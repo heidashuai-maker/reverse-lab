@@ -1,0 +1,28 @@
+#10 [GET] https://kad.arbitr.ru/Version/Change?mode=Full&returnUrl=%2F
+
+  General
+    status:    [302] 
+    duration:  405ms
+    type:      document
+    mimeType:  text/html
+
+  Request headers
+    referer: https://kad.arbitr.ru/Version/Change?mode=Full&returnUrl=%2F
+    upgrade-insecure-requests: 1
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36
+    sec-ch-ua: "Google Chrome";v="149", "Chromium";v="149", "Not)A;Brand";v="24"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+
+  Response headers
+    cache-control: private
+    content-length: 118
+    content-security-policy: upgrade-insecure-requests;
+upgrade-insecure-requests
+    content-type: text/html; charset=utf-8
+    date: Fri, 12 Jun 2026 02:13:07 GMT
+    location: /
+    server: ddos-guard
+    strict-transport-security: max-age=86400
+
+Call browser_network_request with part="response-body" to read the response body.

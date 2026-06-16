@@ -1,0 +1,15 @@
+tmp/
+js_reverse_cache/
+.playwright-mcp/
+
+__pycache__/
+*.py[cod]
+
+.venv/
+.venv-*/
+.venv_mcp/
+.venv-mcp/
+node_modules/
+
+.DS_Store
+Thumbs.db

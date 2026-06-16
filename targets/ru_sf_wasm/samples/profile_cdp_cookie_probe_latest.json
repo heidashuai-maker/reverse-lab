@@ -1,0 +1,60 @@
+{
+  "cdp": "http://192.168.100.128:8080/api/profiles/e5f59a23-e6a4-4bef-95ea-c2623b254b3b/cdp",
+  "steps": {
+    "ws_connect_ms": 18.2,
+    "browser_get_version_ms": 4.2,
+    "create_attach_page_ms": 110.7,
+    "navigate_wait_ms": 8896.1,
+    "generate_cookies_cdp_roundtrip_ms": 3138.5,
+    "browser_validation_cdp_roundtrip_ms": 1085.6,
+    "total_ms": 15205.2
+  },
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/146.0.7680.177",
+    "revision": "@ae03f7fb2cf1215853896d6a4c15fdceee2badb7",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "jsVersion": "14.6.202.31"
+  },
+  "navigationState": {
+    "href": "https://kad.arbitr.ru/",
+    "title": "Картотека арбитражных дел",
+    "readyState": "complete",
+    "cookie": "__ddg9_=103.151.173.204; _ga=GA1.2.566975186.1781598233; _gid=GA1.2.281782516.1781598233; tmr_lvid=68834764d5db95fd9e314ed9843fe982; tmr_lvidTS=1781598234562; _ym_uid=1781598235585168585; _ym_d=1781598235; _ym_isad=2; pr_fp=cc8328855d3d641f09eeaa500ddf56b9e514d04334bdd5966e57d7e3e43e98b4; domain_sid=FPtPLtIcvbY_BlY3SHycN%3A1781598238350; wasm=ad8cb365a607458431ed42424bc5c6a9; rcid=60b429f4-4359-479a-addb-574bcdc0707e; KadLVCards=%d0%9088-435%2f2026; __ddg8_=Tb09GFyOHN5qiqwJ; __ddg10_=1781598300; _gat=1; _gat_FrontEndTracker=1; _ga_9582CL89Y6=GS2.2.s1781598233$o1$g1$t1781598301$j60$l0$h0; _ga_Q2V7P901XE=GS2.2.s1781598233$o1$g1$t1781598302$j60$l0$h0; tmr_detect=0%7C1781598304044",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "webdriver": false
+  },
+  "cookieInfo": {
+    "href": "https://kad.arbitr.ru/",
+    "title": "Картотека арбитражных дел",
+    "cookie": "__ddg9_=103.151.173.204; _ga=GA1.2.566975186.1781598233; _gid=GA1.2.281782516.1781598233; tmr_lvid=68834764d5db95fd9e314ed9843fe982; tmr_lvidTS=1781598234562; _ym_uid=1781598235585168585; _ym_d=1781598235; _ym_isad=2; pr_fp=cc8328855d3d641f09eeaa500ddf56b9e514d04334bdd5966e57d7e3e43e98b4; domain_sid=FPtPLtIcvbY_BlY3SHycN%3A1781598238350; wasm=ad8cb365a607458431ed42424bc5c6a9; rcid=60b429f4-4359-479a-addb-574bcdc0707e; KadLVCards=%d0%9088-435%2f2026; _gat=1; _gat_FrontEndTracker=1; _ga_9582CL89Y6=GS2.2.s1781598233$o1$g1$t1781598301$j60$l0$h0; _ga_Q2V7P901XE=GS2.2.s1781598233$o1$g1$t1781598302$j60$l0$h0; tmr_detect=0%7C1781598304044; __ddg10_=1781598309; __ddg8_=0Fx8VEHH7J7it0su",
+    "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "webdriver": false,
+    "pr_fp": "cc8328855d3d641f09eeaa500ddf56b9e514d04334bdd5966e57d7e3e43e98b4",
+    "wasm": "ad8cb365a607458431ed42424bc5c6a9",
+    "ddg9": "103.151.173.204",
+    "timings": {
+      "loadFpJsMs": 0,
+      "fpGetMs": 463.2,
+      "loadWasmJsMs": 407.1,
+      "wasmMainAndCookieMs": 2255.5,
+      "totalInPageMs": 3125.8
+    }
+  },
+  "browserValidation": {
+    "status": 200,
+    "url": "https://kad.arbitr.ru/Card/566bf0a7-8ccc-4aef-9b45-a46be35197bf",
+    "contentType": "text/html; charset=utf-8",
+    "classification": "case_card_html",
+    "title": "А88-435/2026",
+    "elapsedMs": 1082.8,
+    "preview": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<!--[if lt IE 7]> <html class=\"no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7\" lang=\"ru\"> <![endif]-->\r\n<!--[if IE 7]>    <html class=\"no-js lt-ie10 lt-ie9 lt-ie8\" lang=\"ru\"> <![endif]-->"
+  },
+  "requestsValidationNoProxy": {
+    "status_code": 200,
+    "classification": "case_card_html",
+    "elapsed_ms": 1950.2,
+    "title": "А88-435/2026",
+    "text_preview": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<!--[if lt IE 7]> <html class=\"no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7\" lang=\"ru\"> <![endif]-->\r\n<!--[if IE 7]>    <html class=\"no-js lt-ie10 lt-ie9 lt-ie8\" lang=\"ru\"> <![endif]-->"
+  }
+}

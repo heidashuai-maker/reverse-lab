@@ -1,0 +1,27 @@
+#5 [GET] https://check.ddos-guard.net/check.js
+
+  General
+    status:    [200] 
+    duration:  639ms
+    type:      script
+    mimeType:  application/javascript
+
+  Request headers
+    sec-ch-ua-platform: "Windows"
+    referer: https://kad.arbitr.ru/
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36
+    sec-ch-ua: "Google Chrome";v="149", "Chromium";v="149", "Not)A;Brand";v="24"
+    sec-ch-ua-mobile: ?0
+
+  Response headers
+    cache-control: private, s-maxage=0, max-age=31536000
+    etag: S0y6d84qTXyDWYDj
+    expires: Sat, 12 Jun 2027 02:13:03 GMT
+    p3p: CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"
+    content-length: 152
+    date: Fri, 12 Jun 2026 02:13:03 GMT
+    content-type: application/javascript
+    last-modified: Thu, 01 Jan 1970 00:00:00 GMT
+    server: ddos-guard
+
+Call browser_network_request with part="response-body" to read the response body.

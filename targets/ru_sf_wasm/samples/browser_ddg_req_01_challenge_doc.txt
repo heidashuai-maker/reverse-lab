@@ -1,0 +1,23 @@
+#1 [GET] https://kad.arbitr.ru/Version/Change?mode=Full&returnUrl=%2F
+
+  General
+    status:    [403] 
+    duration:  487ms
+    type:      document
+    mimeType:  text/html
+
+  Request headers
+    upgrade-insecure-requests: 1
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36
+    sec-ch-ua: "Google Chrome";v="149", "Chromium";v="149", "Not)A;Brand";v="24"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+
+  Response headers
+    cache-control: no-cache, no-store, must-revalidate
+    content-length: 898
+    content-type: text/html; charset=UTF-8
+    date: Fri, 12 Jun 2026 02:13:02 GMT
+    server: ddos-guard
+
+Call browser_network_request with part="response-body" to read the response body.

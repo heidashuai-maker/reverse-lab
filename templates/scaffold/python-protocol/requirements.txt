@@ -1,0 +1,1 @@
+# Keep this minimal. Add requests, curl_cffi, pycryptodome, or httpx only when evidence requires them.

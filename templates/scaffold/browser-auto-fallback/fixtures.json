@@ -1,0 +1,6 @@
+{
+  "reason": "browser-auto fallback only",
+  "blockedProtocolPaths": [],
+  "successSamples": [],
+  "failureSamples": []
+}

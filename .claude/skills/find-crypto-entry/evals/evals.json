@@ -1,0 +1,136 @@
+{
+  "skill_name": "find-crypto-entry",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "请求头里的 x-sign 到底是在哪个函数里塞进去的，帮我找入口位置和调用链，不要给我 hook 脚本。",
+      "expected_output": "应定位到脚本、函数、调用路径和入口类别，优先静态搜索，必要时说明动态断点验证方式。",
+      "files": [],
+      "expectations": [
+        "The response focuses on entry location and call chain rather than browser hook snippets",
+        "The response includes script/function/call-path fields or an equivalent completion template",
+        "The response distinguishes direct assignment, interceptor, SDK, or challenge branch"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我怀疑 axios interceptor 统一给 /api/order/create 加 Authorization，帮我从 request config 追到最终 encrypt 的路径。",
+      "expected_output": "应选择请求拦截器路径，搜索 interceptor、headers、目标 API path 和加密函数，最终交付调用链。",
+      "files": [],
+      "expectations": [
+        "The response identifies this as an interceptor-style entry search",
+        "The response searches or recommends searching API path and request configuration in addition to the header name",
+        "The response does not switch to Node.js environment patching before the entry is found"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "首页先返回 412 challenge，页面里有 $_ts 和外链 js。我想生成动态 cookie 后回放接口。",
+      "expected_output": "应识别为瑞数 challenge/dynamic cookie 分支，不应按普通 sign 入口深追。若目标是固定项目结构、首跳缓存或最小 runtime/proxy 观察，转 rs-reverse；若目标是紧凑 Python + iv8 请求复现，转 iv8-web-reverse。",
+      "files": [],
+      "expectations": [
+        "The response identifies the challenge or dynamic-cookie branch",
+        "The response does not treat the task as a normal API sign parameter search",
+        "The response does not route to rs-reverse solely because $_ts appears; it considers the requested deliverable"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "给我一段 Chrome DevTools 里能直接粘贴的 fetch hook，只在 /api/login 的时候断下来。",
+      "expected_output": "不应走入口定位主流程，应转 browser-hook-snippets。",
+      "files": [],
+      "expectations": [
+        "The response does not perform source entry tracing as the main answer",
+        "The response redirects to browser-hook-snippets or states that a browser hook snippet is the right tool"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "目标是最终请求里 /api/recommend 的 X-Bogus header。但我只看到拦截器里有一条 header[\"X-Bogus\"] = ...，不知道是哪个函数写的。帮我先搞清楚是 writer 还是 builder，还是更上游的 entry/source。",
+      "expected_output": "应把问题压成 writer -> builder -> entry -> source 链，先证明当前卡在哪一层，再决定下一步搜索或断点。",
+      "files": [],
+      "expectations": [
+        "The response identifies which layer is currently proven: writer, builder, entry, or source",
+        "The response does not jump to full deobfuscation or environment patching before proving the layer",
+        "The response recommends the next search or breakpoint direction based on the current layer gap"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "我只知道接口是 https://xxx.com/api/order/submit，请求头里有个 x-sign。不确定它是业务代码直接塞、拦截器统一加、还是外部 SDK。cookie 是 HttpOnly 的。帮我先做最轻的观察和判断。",
+      "expected_output": "应先完成 Observe 判据：确认目标请求、触发动作、候选脚本、入口类别（业务/拦截器/SDK/challenge），不直接开始补环境或解混淆。",
+      "files": [],
+      "expectations": [
+        "The response demonstrates an Observe-stage judgment before moving to heavier work",
+        "The response maps the task to one of the five entry-category architectures",
+        "The response does not start Node.js environment patching or full AST deobfuscation",
+        "The response mentions the HttpOnly cookie constraint as a routing signal"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "我设了 XHR 断点，但暂停点总是出现在 vue.runtime.js 和 axios 底层。怎么跳过这些，快速定位到业务代码里写 header 的那个函数？",
+      "expected_output": "应给出调试降噪策略：blackbox vue/axios/runtime、条件 XHR 断点、watch expression 在目标帧求值、事件断点辅助。不应直接给 hook 脚本。",
+      "files": [],
+      "expectations": [
+        "The response recommends blackboxing framework and vendor bundles",
+        "The response recommends conditional XHR breakpoints or watch expressions in the target call frame",
+        "The response does not provide raw hook scripts as the primary answer"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "我找到了写 Authorization 的函数，里面调了一个东西，但变量名全被混淆了。我看到里面有 256 个元素的数组、密集的 ^ & | 运算、还有一个固定的 32 字节输出。帮我判断这最可能是 SHA256、AES、还是自定义 HMAC。",
+      "expected_output": "应使用算法快速指纹：256 元素 S-box/table + 密集位运算 + 固定 block 循环指向对称或自定义 hash，不等于就能下结论，需要进一步验证。",
+      "files": [],
+      "expectations": [
+        "The response uses crypto fingerprints such as S-box, bit operations, and block looping to narrow the algorithm type",
+        "The response does not claim a definitive algorithm name based on fingerprints alone",
+        "The response distinguishes the classification as a handoff signal, not full algorithm recovery"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "上次逆向定位到 captcha/verify.js 里有个 postAndVerify 函数，样本编号 S03，但调用链还不完整。帮我继续往下追并更新请求链记录。",
+      "expected_output": "应先复用已有的 reverse-records/请求链路.md 或等价工件，展示当前样本、证据、写边界、未闭环项，再推进搜索或动态验证。",
+      "files": [],
+      "expectations": [
+        "The response references an existing request-chain artifact or recommends creating one",
+        "The response keeps sample ID and evidence number attached to the new findings",
+        "The response explicitly states which missing edge or unclosed item is being addressed next"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "帮我把 sign.js 里的函数提取出来，用 execjs 在 Python 里直接调，不用分析调用链。",
+      "expected_output": "这不是 find-crypto-entry 的职责。应路由到 env-patch 或至少要求先证明入口已确认、链路可独立运行，不能直接跳到 execjs 调用。",
+      "files": [],
+      "expectations": [
+        "The response does not accept execjs-style extraction as the main answer before entry is confirmed",
+        "The response either hands off to env-patch or states that the entry is not yet proven independently runnable"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "我主要想利用浏览器 DevTools 找到关键的 JS 加解密代码。目标请求返回密文，页面会解成明文，帮我定位第一次解密的脚本 URL、函数位置和调用链，不要只给 hook 脚本。",
+      "expected_output": "应走 browser-assisted 关键 JS 定位流程：从 Network 目标响应和 initiator 入手，结合断点、调用栈、WebCrypto/CryptoJS/worker/wasm 线索定位脚本 URL、函数、行列号和首次明文出现点。",
+      "files": [],
+      "expectations": [
+        "The response treats this as browser-assisted crypto entry discovery rather than a simple hook-snippet task",
+        "The response starts from the target request or ciphertext source and uses browser call stacks or breakpoints to locate the first decrypt frame",
+        "The response includes script URL, function/location, call path, and minimal runtime evidence in the expected output"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "页面里可能用了 crypto.subtle 或 CryptoJS 算签名。我想知道具体哪个 chunk 里的哪个函数被调用，后续再考虑补环境。",
+      "expected_output": "应定位 WebCrypto/CryptoJS 调用的上层业务或 SDK 函数，记录 chunk、函数、调用栈和输入输出形态，不应直接进入 env-patch。",
+      "files": [],
+      "expectations": [
+        "The response targets the caller around WebCrypto or CryptoJS rather than only the native API itself",
+        "The response records chunk/script location and call stack evidence",
+        "The response does not start Node.js environment patching before the browser-side entry is proven"
+      ]
+    }
+  ]
+}

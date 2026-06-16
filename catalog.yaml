@@ -1,0 +1,78 @@
+project: reverse-lab
+active_default:
+  - web-protocol-recovery
+  - find-crypto-entry
+  - browser-hook-snippets
+  - ast-deobfuscate
+  - env-patch
+
+groups:
+  core:
+    path: skills-library/core
+    purpose: 通用逆向工作流，适合项目级常驻启用
+    skills:
+      web-protocol-recovery:
+        status: active
+        trigger: 端到端协议恢复，最终交付脱离浏览器的 Python 采集器
+      find-crypto-entry:
+        status: active
+        trigger: 定位 sign/token/header/cookie 写入点、脚本 URL、函数入口和调用链
+      browser-hook-snippets:
+        status: active
+        trigger: 生成 DevTools/Console/Snippets 可粘贴 hook 脚本
+      ast-deobfuscate:
+        status: active
+        trigger: Babel AST 解混淆，还原可读源码和中间产物
+      env-patch:
+        status: active
+        trigger: 已知入口后在 Node.js/VM 中补浏览器环境跑通
+
+  waf:
+    path: skills-library/waf
+    purpose: WAF 和瑞数专题，默认作为库保留
+    skills:
+      waf-cookie-pure-first:
+        status: library
+        trigger: JS challenge 或 WAF 动态 cookie 纯 Python/iv8 复现
+      rs-reverse:
+        status: library
+        trigger: 瑞数/Ruishu/Rivers 轻量项目骨架、首跳缓存、最小 runtime 观察
+
+  captcha:
+    path: skills-library/captcha
+    purpose: 滑块验证码协议专题
+    skills:
+      captcha-slide-reverse:
+        status: library
+        trigger: 极验 GT4、腾讯、易盾、数美、云片、360 天御滑块链路复现
+
+  iv8-cases:
+    path: skills-library/iv8-cases
+    purpose: 具体站点 Python + iv8 复现案例，按需启用
+    skills:
+      boss-zhipin-iv8:
+        status: library
+        trigger: BOSS 直聘 stoken/security-js 复现
+      douyin-bdms-iv8:
+        status: library
+        trigger: 抖音 BDMS/XHR URL signing 复现
+      iv8-ruishu-reverse:
+        status: library
+        trigger: 瑞数 Python + iv8 请求可用性复现
+      jd-h5st-iv8:
+        status: library
+        trigger: 京东 h5st 复现
+      pdd-anti-content-iv8:
+        status: library
+        trigger: 拼多多 anti_content 复现
+      xhs-homefeed-iv8:
+        status: library
+        trigger: 小红书 X-s/X-t/X-S-Common 复现
+
+  dev:
+    path: skills-library/dev
+    purpose: skill 创建、评测和维护
+    skills:
+      skill-creator:
+        status: library
+        trigger: 创建、修改、评测或打包 skill

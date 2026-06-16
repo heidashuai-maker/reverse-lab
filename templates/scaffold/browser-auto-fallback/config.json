@@ -1,0 +1,9 @@
+{
+  "url": "",
+  "browserFamily": "chromium",
+  "headless": true,
+  "locale": "zh-CN",
+  "executablePath": "",
+  "timeout": 30000,
+  "settleMs": 3000
+}

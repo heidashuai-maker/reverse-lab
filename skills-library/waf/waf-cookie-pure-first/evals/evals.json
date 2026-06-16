@@ -1,0 +1,32 @@
+[
+  {
+    "prompt": "这个 p3.js 会写 w_tsfp，帮我做 Python 复现，优先纯算，纯算不行再 iv8",
+    "should_trigger": true,
+    "reason": "Explicit w_tsfp dynamic cookie reproduction with pure-first requirement."
+  },
+  {
+    "prompt": "我已经能通过 iv8 生成 cookie 了，继续把它改成纯 Python 算法",
+    "should_trigger": true,
+    "reason": "把运行时 JS challenge cookie 转成纯 Python。"
+  },
+  {
+    "prompt": "没有本地 p3.js，你可以自己去 https://www.qidian.com/C2WF946J0/probev3.js 请求，C2WF946J 可能变化，写个通用方式发现并下载后复现 w_tsfp",
+    "should_trigger": true,
+    "reason": "无本地 JS，需要自动发现动态目录 probev3.js 并做 WAF cookie 复现。"
+  },
+  {
+    "prompt": "帮我找这个请求里的 sign 参数在哪个函数生成",
+    "should_trigger": false,
+    "reason": "只定位入口，应使用 find-crypto-entry。"
+  },
+  {
+    "prompt": "给我一段 hook document.cookie 的浏览器控制台脚本",
+    "should_trigger": false,
+    "reason": "只要 hook 片段，应使用 browser-hook-snippets。"
+  },
+  {
+    "prompt": "帮我把这个 obfuscator 混淆文件做 AST 解混淆",
+    "should_trigger": false,
+    "reason": "整文件 AST 解混淆，应使用 ast-deobfuscate。"
+  }
+]

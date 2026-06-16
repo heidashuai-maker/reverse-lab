@@ -1,0 +1,24 @@
+#6 [GET] https://kad.arbitr.ru/.well-known/ddos-guard/id/S0y6d84qTXyDWYDj
+
+  General
+    status:    [200] 
+    duration:  161ms
+    type:      image
+    mimeType:  image/png
+
+  Request headers
+    sec-ch-ua-platform: "Windows"
+    referer: https://kad.arbitr.ru/Version/Change?mode=Full&returnUrl=%2F
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36
+    sec-ch-ua: "Google Chrome";v="149", "Chromium";v="149", "Not)A;Brand";v="24"
+    sec-ch-ua-mobile: ?0
+
+  Response headers
+    expires: Thu, 01 Jan 1970 00:00:00 GMT
+    cache-control: no-cache
+    content-length: 68
+    date: Fri, 12 Jun 2026 02:13:03 GMT
+    content-type: image/png
+    server: ddos-guard
+
+Call browser_network_request with part="response-body" to read the response body.

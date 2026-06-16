@@ -1,0 +1,22 @@
+{
+  "url": "https://kad.arbitr.ru/",
+  "title": "Картотека арбитражных дел",
+  "cookie": "_ga=GA1.2.269322335.1781164022; _gid=GA1.2.574355670.1781164022; _ym_uid=1781164022216390716; _ym_d=1781164022; tmr_lvid=5ca8dd1c5c7fbb34aba836afcc76dfdb; tmr_lvidTS=1781164022427; _ym_isad=2; domain_sid=c8tqLSp0iePKXDb-9z8g0%3A1781164024913; KadLVCards=%d0%9081-6682%2f2026; __ddg9_=103.151.173.91; __ddg10_=1781230388; SiteVersion=Full; __ddg8_=cWDsmTTiSpognRds; pr_fp=e867e6091a1711fc4c3d7a6344501e4826a5ef76682bb4fddd4a727909bce35f; _ga_Q2V7P901XE=GS2.2.s1781230389$o3$g0$t1781230389$j60$l0$h0; _ga_9582CL89Y6=GS2.2.s1781230389$o3$g0$t1781230389$j60$l0$h0; tmr_detect=0%7C1781230392662",
+  "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+  "webdriver": false,
+  "languages": [
+    "zh-CN",
+    "zh"
+  ],
+  "platform": "Win32",
+  "hardwareConcurrency": 12,
+  "deviceMemory": 32,
+  "screen": {
+    "width": 1920,
+    "height": 1080,
+    "availWidth": 1920,
+    "availHeight": 1040,
+    "colorDepth": 32
+  },
+  "timezone": "Asia/Shanghai"
+}

@@ -1,0 +1,23 @@
+#4 [GET] https://kad.arbitr.ru/.well-known/ddos-guard/js-challenge/index.js
+
+  General
+    status:    [200] 
+    duration:  557ms
+    type:      script
+    mimeType:  application/javascript
+
+  Request headers
+    sec-ch-ua-platform: "Windows"
+    referer: https://kad.arbitr.ru/Version/Change?mode=Full&returnUrl=%2F
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36
+    sec-ch-ua: "Google Chrome";v="149", "Chromium";v="149", "Not)A;Brand";v="24"
+    sec-ch-ua-mobile: ?0
+
+  Response headers
+    expires: Fri, 12 Jun 2026 03:13:03 GMT
+    content-length: 189689
+    date: Fri, 12 Jun 2026 02:13:03 GMT
+    content-type: application/javascript
+    server: ddos-guard
+
+Call browser_network_request with part="response-body" to read the response body.

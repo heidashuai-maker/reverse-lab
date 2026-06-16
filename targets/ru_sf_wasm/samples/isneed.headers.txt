@@ -1,0 +1,15 @@
+HTTP/1.1 451 Unavailable For Legal Reasons
+Server: ddos-guard
+Connection: keep-alive
+Keep-Alive: timeout=60
+Set-Cookie: __ddg8_=8vjQt4zmo5LeIBiD; Domain=.arbitr.ru; Path=/; Expires=Thu, 11-Jun-2026 08:06:05 GMT
+Set-Cookie: __ddg10_=1781163965; Domain=.arbitr.ru; Path=/; Expires=Thu, 11-Jun-2026 08:06:05 GMT
+Set-Cookie: __ddg9_=103.151.172.95; Domain=.arbitr.ru; Path=/; Expires=Thu, 11-Jun-2026 08:06:05 GMT
+Strict-Transport-Security: max-age=86400
+Content-Security-Policy: upgrade-insecure-requests;
+cache-control: private
+content-type: text/html; charset=utf-8
+date: Thu, 11 Jun 2026 07:46:05 GMT
+content-security-policy: upgrade-insecure-requests
+Transfer-Encoding: chunked
+

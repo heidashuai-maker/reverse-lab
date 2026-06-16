@@ -1,0 +1,17 @@
+HTTP/1.1 200 OK
+Server: ddos-guard
+Connection: keep-alive
+Keep-Alive: timeout=60
+Set-Cookie: __ddg8_=qprOtmixRjHK5nBV; Domain=.arbitr.ru; Path=/; Expires=Thu, 11-Jun-2026 08:06:06 GMT
+Set-Cookie: __ddg10_=1781163966; Domain=.arbitr.ru; Path=/; Expires=Thu, 11-Jun-2026 08:06:06 GMT
+Set-Cookie: __ddg9_=103.151.172.95; Domain=.arbitr.ru; Path=/; Expires=Thu, 11-Jun-2026 08:06:06 GMT
+Strict-Transport-Security: max-age=86400
+Content-Security-Policy: upgrade-insecure-requests;
+content-type: application/wasm
+last-modified: Tue, 26 May 2026 10:33:00 GMT
+accept-ranges: bytes
+etag: "0d63e6fbecdc1:0"
+date: Thu, 11 Jun 2026 07:46:05 GMT
+content-length: 235455
+content-security-policy: upgrade-insecure-requests
+

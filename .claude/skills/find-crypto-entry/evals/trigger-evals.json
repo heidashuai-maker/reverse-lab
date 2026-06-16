@@ -1,0 +1,78 @@
+[
+  {
+    "query": "请求头里的 x-sign 是哪个函数生成的，给我脚本位置和调用链",
+    "should_trigger": true
+  },
+  {
+    "query": "页面用 CryptoJS 算签名，我想知道具体哪个 chunk 哪个函数被调用",
+    "should_trigger": true
+  },
+  {
+    "query": "接口返回密文，页面会解成明文，帮我定位第一次解密的函数位置",
+    "should_trigger": true
+  },
+  {
+    "query": "我已经锁定 /api/pay/submit 这个请求了，想知道请求体里的 encryptData 是哪个脚本哪一层函数生成的",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我用 DevTools 从 Network initiator 和调用栈里追一下 x-token 的来源，最后要脚本 URL、行列号和函数名",
+    "should_trigger": true
+  },
+  {
+    "query": "WebSocket 收到一段密文后页面会解包成 JSON，帮我定位 worker 或 wasm 里的解密入口和调用路径",
+    "should_trigger": true
+  },
+  {
+    "query": "首页 412 里有 $_ts.cd、$_ts.nsd、r2mKa 和 Cookie S/T，帮我做瑞数 Cookie T 链路",
+    "should_trigger": false
+  },
+  {
+    "query": "给我一个 DevTools 里能直接粘贴的 fetch hook，只在 /api/login 时断下",
+    "should_trigger": false
+  },
+  {
+    "query": "入口已经找到了，把这段依赖 window/document 的 JS 补环境后放到 Node 里跑",
+    "should_trigger": false
+  },
+  {
+    "query": "这个 _0x 混淆大文件要做 AST 解混淆，保留 step1/step2 中间产物",
+    "should_trigger": false
+  },
+  {
+    "query": "先给我一段最小 document.cookie hook 脚本，我只想临时观察谁写 cookie，不要定位完整调用链",
+    "should_trigger": false
+  },
+  {
+    "query": "sign 函数入口已经确认，现在目标是补 navigator 和 crypto 后在 Node VM 里复现输出",
+    "should_trigger": false
+  },
+  {
+    "query": "这个 challenge 还没判断类型，先不要找脚本位置，帮我定路线和检查点",
+    "should_trigger": false
+  },
+  {
+    "query":     "已经决定用 Python + iv8 执行防护页生成 cookie 后翻页请求，不需要再找 sign 入口",
+    "should_trigger": false
+  },
+  {
+    "query": "先告诉我 x-sign 大概在哪个 chunk，不用精确到行号，我只要缩小范围",
+    "should_trigger": true
+  },
+  {
+    "query": "入口已经确认但我想在上报签名前用 hook 看一眼中间值，不要给 hook 脚本，继续帮我定位生成函数",
+    "should_trigger": true
+  },
+  {
+    "query": "我已经确认 sign 是哪个函数生成的，现在要补环境在 Node 里跑，不要再定位",
+    "should_trigger": false
+  },
+  {
+    "query": "不知道 sign 还是 token，先帮我在请求里确认是哪个字段被后端校验，再定位源头",
+    "should_trigger": true
+  },
+  {
+    "query": "瑞数 r2mKa 里面很复杂但我不深挖算法，我只想知道 Cookie T 在哪一步生成的入口函数和行号",
+    "should_trigger": true
+  }
+]

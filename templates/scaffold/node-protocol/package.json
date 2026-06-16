@@ -1,0 +1,11 @@
+{
+  "name": "reverse-lab-node-protocol",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "self-test": "node main.js --self-test",
+    "once": "node main.js --once"
+  },
+  "dependencies": {}
+}

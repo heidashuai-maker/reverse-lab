@@ -1,0 +1,13 @@
+{
+  "cases": [
+    {
+      "name": "replace-with-browser-sample",
+      "input": {
+        "path": "/api/demo",
+        "timestamp": "1700000000",
+        "nonce": "nonce"
+      },
+      "expectedSignature": ""
+    }
+  ]
+}

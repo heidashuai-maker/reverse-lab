@@ -1,0 +1,8 @@
+2. [GET] https://kad.arbitr.ru/.well-known/ddos-guard/js-challenge/index.css => [200] 
+3. [GET] https://kad.arbitr.ru/.well-known/ddos-guard/js-challenge/view.js => [200] 
+4. [GET] https://kad.arbitr.ru/.well-known/ddos-guard/js-challenge/index.js => [200] 
+5. [GET] https://check.ddos-guard.net/check.js => [200] 
+6. [GET] https://kad.arbitr.ru/.well-known/ddos-guard/id/S0y6d84qTXyDWYDj => [200] 
+7. [GET] https://check.ddos-guard.net/set/id/S0y6d84qTXyDWYDj => [200] 
+8. [POST] https://kad.arbitr.ru/.well-known/ddos-guard/mark/ => [200] 
+9. [POST] https://kad.arbitr.ru/.well-known/ddos-guard/mark/ => [200] 

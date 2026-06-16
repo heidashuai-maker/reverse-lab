@@ -1,0 +1,10 @@
+{
+  "name": "reverse-lab-vm-sandbox",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "self-test": "node run.js --self-test"
+  },
+  "dependencies": {}
+}
