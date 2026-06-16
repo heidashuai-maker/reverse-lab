@@ -1,6 +1,6 @@
 param(
   [Parameter(Mandatory=$true)][string]$Name,
-  [ValidateSet('agents','codex','claude')][string[]]$Targets = @('agents','codex','claude'),
+  [ValidateSet('agents','codex')][string[]]$Targets = @('agents','codex'),
   [switch]$Replace,
   [string]$Root
 )
@@ -25,7 +25,6 @@ foreach ($target in $Targets) {
   $parent = switch ($target) {
     'agents' { Join-Path $Root '.agents\skills' }
     'codex' { Join-Path $Root '.codex\skills' }
-    'claude' { Join-Path $Root '.claude\skills' }
   }
 
   New-Item -ItemType Directory -Force -Path $parent | Out-Null

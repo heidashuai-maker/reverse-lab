@@ -1,4 +1,5 @@
 project: reverse-lab
+
 active_default:
   - web-protocol-recovery
   - find-crypto-entry
@@ -25,15 +26,15 @@ groups:
         trigger: Babel AST 解混淆，还原可读源码和中间产物
       env-patch:
         status: active
-        trigger: 已知入口后在 Node.js/VM 中补浏览器环境跑通
+        trigger: 已知入口后在 Node.js/vm/jsdom/sdenv 中补浏览器环境跑通
 
   waf:
     path: skills-library/waf
-    purpose: WAF 和瑞数专题，默认作为库保留
+    purpose: WAF、JS challenge 和瑞数专题，默认作为库保留
     skills:
       waf-cookie-pure-first:
         status: library
-        trigger: JS challenge 或 WAF 动态 cookie 纯 Python/iv8 复现
+        trigger: JS challenge 或 WAF 动态 cookie 复现，纯协议/纯算优先
       rs-reverse:
         status: library
         trigger: 瑞数/Ruishu/Rivers 轻量项目骨架、首跳缓存、最小 runtime 观察
@@ -46,10 +47,13 @@ groups:
         status: library
         trigger: 极验 GT4、腾讯、易盾、数美、云片、360 天御滑块链路复现
 
-  iv8-cases:
-    path: skills-library/iv8-cases
-    purpose: 具体站点 Python + iv8 复现案例，按需启用
+  adapters:
+    path: skills-library/adapters
+    purpose: 具体站点或具体运行时形态的窄适配器，按需启用
     skills:
+      iv8-web-reverse:
+        status: library
+        trigger: 通用 Python + iv8 + requests 复现，没有更窄 adapter 时使用
       boss-zhipin-iv8:
         status: library
         trigger: BOSS 直聘 stoken/security-js 复现
@@ -68,11 +72,3 @@ groups:
       xhs-homefeed-iv8:
         status: library
         trigger: 小红书 X-s/X-t/X-S-Common 复现
-
-  dev:
-    path: skills-library/dev
-    purpose: skill 创建、评测和维护
-    skills:
-      skill-creator:
-        status: library
-        trigger: 创建、修改、评测或打包 skill

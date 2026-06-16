@@ -95,7 +95,7 @@ webapi/xhr.js, webapi/url.js, encoding/textencoder.js
 
 4. **真实环境参数很重要**
    - 框架模块提供的是默认值（Chrome 120 + macOS 等）
-   - 对于校验严格的网站，需要用 js-reverse-mcp 采集真实浏览器参数覆盖默认值
+   - 对于校验严格的网站，需要用 Camoufox MCP 采集真实浏览器参数覆盖默认值
 
 ## 按 undefinedPaths 前缀选择模块的算法
 

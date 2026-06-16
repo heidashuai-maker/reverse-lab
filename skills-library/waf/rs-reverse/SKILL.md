@@ -23,10 +23,11 @@ description: >-
 
 ## MCP 工具选择
 
-- 需要浏览器侧定位、源码搜索、XHR/fetch 断点、请求发起栈、WebSocket 消息或 runtime 调试时，先检查是否存在 `js-reverse-mcp_*` 工具。
-- 如果存在 `js-reverse-mcp_*`，优先用它完成页面选择、源码搜索、断点、调用栈和网络分析。
-- 只有当前会话没有 `js-reverse-mcp_*`，或该工具无法完成所需浏览器交互时，才回退到 `chrome-devtools-mcp_*`。
-- 同一条调试链路尽量不要混用两套 MCP 页面上下文；确需切换时，先重新确认当前 page、frame 和请求证据。
+- 浏览器侧定位、源码搜索、XHR/fetch 观察、请求发起栈、Cookie 证据或 runtime 调试优先使用 Camoufox MCP。
+- Camoufox 主要用于 `navigate` / `network_capture` / `list_network_requests` / `get_network_request` / `get_request_initiator` / `search_code` / `inject_hook_preset` / `evaluate_js` / `cookies` 等证据采集。
+- Cookie 来源用组合证据判断：响应 `Set-Cookie`、`inject_hook_preset("cookie")` 捕获的 JS 写入、最终 `cookies` 结果必须能对上。
+- 目标明确走 Chrome/Chromium 指纹分支时，可用 CloakBrowser MCP 采集对照；不要把 Camoufox 的 Firefox-only 指纹事实混进 Chrome 分支。
+- 同一条调试链路尽量不要混用两套 MCP 页面上下文；确需切换时，先重新确认当前 page、frame、Cookie 和请求证据。
 
 ## 固定项目结构
 

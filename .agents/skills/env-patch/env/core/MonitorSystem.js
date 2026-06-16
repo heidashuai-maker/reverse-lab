@@ -12,7 +12,7 @@
  * @conflict 与 core/EnvMonitor.js 互斥（二者均注册 window.__EnvMonitor__），不要同时加载。与 core/ProxyMonitor.js 不建议混用（功能重叠）。
  * @alternatives core/ProxyMonitor.js（首选，所有模块的基础依赖）、core/EnvMonitor.js（侧重日志系统 + 查询 API + 分类 mock 存储）
  * @compatibility Chrome 80+, Firefox 75+, Edge 79+
- * @generated-by Claude
+ * @generated-by reverse-lab
  */
 
 (function() {

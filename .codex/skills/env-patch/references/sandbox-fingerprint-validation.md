@@ -14,6 +14,8 @@
 4. 目标读取 `navigator/screen/document/canvas/webgl/audio/performance` 等指纹。
 5. JSVMP、SDK 拦截器、WAF cookie 或动态 challenge 将环境值参与哈希。
 
+如果目标是 JSVMP / 安全 SDK 黑箱、XHR/fetch 拦截器“喂入-截出”、jsdom/vm/sdenv 环境伪装，或已出现 `HTTP 200 + 空 body`、签名长度正确但服务端拒绝、native 外形暴露等强环境指纹信号，同时读取 `jsdom-env-emulation-playbook.md`。本文继续负责验收闭环，`jsdom-env-emulation-playbook.md` 负责具体的路径 B 六步法、分批采集、补丁红线和沙箱内部验证。
+
 ## 七步闭环
 
 ### 1. 先确认入口和初始化链路
@@ -80,6 +82,14 @@
 5. DOM layout、Canvas、WebGL、Audio。
 6. 目标读取过的中危 API stub。
 7. 隐藏 Node.js 特征。
+
+JSVMP / SDK 黑箱场景的具体补丁细节见 `jsdom-env-emulation-playbook.md`，尤其是：
+
+- `Function.prototype.toString` 只能统一接管一次，避免二次覆盖暴露补丁源码。
+- `Symbol.toStringTag` 优先设在正确 prototype，不要只设实例。
+- `navigator.plugins` 需要完整 `PluginArray` / `Plugin` / `MimeType` 外形，不是只改 `length`。
+- jsdom 验证必须在 `win.eval()` 内执行。
+- 环境补丁、XHR/fetch hook 和 SDK 加载顺序会直接决定是否能截获最终签名。
 
 ### 6. 沙箱内部验证
 

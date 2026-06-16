@@ -23,13 +23,11 @@ Get-ChildItem -LiteralPath $library -Recurse -Filter 'SKILL.md' |
     $name = Split-Path $skillDir -Leaf
     $agentsActive = Test-Path -LiteralPath (Join-Path $Root ".agents\skills\$name")
     $codexActive = Test-Path -LiteralPath (Join-Path $Root ".codex\skills\$name")
-    $claudeActive = Test-Path -LiteralPath (Join-Path $Root ".claude\skills\$name")
     [PSCustomObject]@{
       Group = $group
       Name = $name
       Agents = if ($agentsActive) { 'active' } else { '-' }
       Codex = if ($codexActive) { 'active' } else { '-' }
-      Claude = if ($claudeActive) { 'active' } else { '-' }
       Path = $skillDir
     }
   } | Format-Table -AutoSize

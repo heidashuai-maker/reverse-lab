@@ -1,27 +1,28 @@
 # MCP Hook 工具层
 
-本文用于把浏览器 hook 需求映射到可用工具。默认仍能输出 DevTools Console / Snippets 脚本，但当 Camoufox MCP 可用时，应优先使用它完成前置注入、运行时探针和 Cookie 归因。
+本文用于把浏览器 hook 需求映射到可用工具。默认仍能输出 DevTools Console / Snippets 脚本，但当 Camoufox MCP 可用时，应优先使用它完成前置注入、运行时探针、Cookie 证据和环境读取监控。
 
 ## 工具优先级
 
-1. Camoufox MCP：首选。适合 Firefox/Gecko 指纹基准、首屏挑战、强反检测、Cookie 来源归因、JSVMP 轻量探针。
+1. Camoufox MCP：首选。适合 Firefox/Gecko 指纹基准、首屏挑战、强反检测、Cookie 证据链、JSVMP 轻量探针。
 2. CloakBrowser MCP：可选。适合 Chrome/Chromium 指纹基准、Playwright MCP 兼容自动化、Chrome-only 分支对照。
 3. DevTools / 普通浏览器 MCP：兜底。适合无强检测页面、临时 Console/Snippets 注入。
 
-如果当前会话没有暴露 Camoufox 或 CloakBrowser 工具，仍输出普通 JS hook，但要说明缺少的能力，例如无法保证首屏 pre-inject、无法自动 Cookie 归因、无法稳定采集反检测指纹。
+如果当前会话没有暴露 Camoufox 或 CloakBrowser 工具，仍输出普通 JS hook，但要说明缺少的能力，例如无法保证首屏 pre-inject、无法稳定区分 HTTP `Set-Cookie` 与 JS 写 cookie、无法稳定采集反检测指纹。
 
 ## Camoufox MCP 推荐能力
 
 | 需求 | 推荐能力 | 说明 |
 | --- | --- | --- |
-| 首屏挑战页 hook | `navigate(pre_inject_hooks=[...], via_blank=true)` | hook 先于 challenge JS 生效 |
-| 普通 XHR/fetch 观察 | `inject_hook_preset("xhr")` / `inject_hook_preset("fetch")` | 默认持久化，跨导航重注入 |
-| Cookie 写入来源 | `inject_hook_preset("cookie")` + `analyze_cookie_sources` | 区分 JS `document.cookie` 和 HTTP `Set-Cookie` |
-| 广谱低开销观察 | `inject_hook_preset("runtime_probe")` + `get_runtime_probe_log` | 优先于全局 Proxy |
+| 首屏挑战页 hook | `navigate(pre_inject_hooks=[...])` | hook 先于 challenge JS 生效 |
+| 普通 XHR/fetch 观察 | `inject_hook_preset("xhr")` / `inject_hook_preset("fetch")` | 配合刷新或重新触发请求 |
+| Cookie 写入证据 | `inject_hook_preset("cookie")` + `network_capture` + `get_network_request` + `cookies` | JS 写入与 HTTP `Set-Cookie` 用组合证据判断 |
+| 广谱低开销观察 | `inject_hook_preset("runtime_probe")` + 工具返回日志/证据文件 | 优先于全局 Proxy |
 | 指定函数参数/返回值 | `hook_function(mode="trace")` | 不暂停页面，采样调用栈 |
 | 防止页面覆盖 hook | `hook_function(mode="intercept", non_overridable=true)` | 用于关键原型方法 |
 | JSVMP 环境读取 | `hook_jsvmp_interpreter(mode="transparent")` | 签名型反爬优先低侵入 |
 | 深度 VMP 读写 | `instrumentation(action="install")` | 只在轻量 hook 不足时启用 |
+| 属性读取追踪 | `trace_property_access` | 适合定位 `navigator`、`document`、`screen` 等环境依赖 |
 
 ## Cookie Hook 注意点
 
@@ -39,7 +40,13 @@ function findCookieDescriptor() {
 }
 ```
 
-如果使用 Camoufox MCP，优先直接使用 cookie preset 和 `analyze_cookie_sources`，因为 HTTP `Set-Cookie` 不会经过 `document.cookie` setter。
+HTTP `Set-Cookie` 不会经过 `document.cookie` setter。使用 Camoufox MCP 时，Cookie 来源要结合：
+
+- `network_capture` / `list_network_requests` / `get_network_request` 中的响应头。
+- `inject_hook_preset("cookie")` 记录的 JS setter 调用。
+- `cookies` 返回的最终浏览器 cookie jar。
+
+不要假设存在单独的自动 Cookie 来源分析工具。
 
 ## 注入时机
 
@@ -74,4 +81,4 @@ function findCookieDescriptor() {
 }
 ```
 
-后续交给 `env-patch` 时，应同时提供浏览器基准、读取路径、触发请求和 first divergence。
+后续交给 `env-patch` 时，应同时提供浏览器基准、读取路径、触发请求和 first divergence。跨 skill 证据格式见 `skills-library/shared/camoufox-evidence-flow.md`。

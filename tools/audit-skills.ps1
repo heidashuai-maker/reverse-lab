@@ -13,8 +13,7 @@ if ([string]::IsNullOrWhiteSpace($Root)) {
 $skillRoots = @(
   (Join-Path $Root 'skills-library'),
   (Join-Path $Root '.agents\skills'),
-  (Join-Path $Root '.codex\skills'),
-  (Join-Path $Root '.claude\skills')
+  (Join-Path $Root '.codex\skills')
 ) | Where-Object { Test-Path -LiteralPath $_ }
 
 $skillFiles = foreach ($rootPath in $skillRoots) {

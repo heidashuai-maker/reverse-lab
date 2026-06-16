@@ -10,7 +10,7 @@
 | CloakBrowser MCP | Chrome / Chromium 指纹基准 | Chromium 源码级指纹、Playwright MCP 兼容自动化、Chrome 分支对照 | 可选工具层；当目标明确走 Chrome 特征或需要 Chromium 对照时启用 |
 | DevTools / Playwright MCP / 浏览器插件 | 当前可用浏览器 | 基础页面观察、网络记录、临时 `evaluate` | 兜底工具层；能力不完整时要记录缺口 |
 
-截至 2026-06-16，公开资料显示 `swimmwatch/cloakbrowser-mcp` 是可用的 CloakBrowser MCP 路线：它把上游 `@playwright/mcp` 工具面桥接到 CloakBrowser Chromium binary，仅额外提供少量本地自检工具。使用前应运行 `npx -y cloakbrowser-mcp@latest doctor --json` 或等价诊断确认本机可用。
+CloakBrowser MCP 是否可用以当前会话暴露的工具和本机诊断为准。使用前应运行 `cloakbrowser-mcp doctor --json` 或等价诊断确认本机可用。
 
 ## 基本原则
 
@@ -26,10 +26,10 @@
 
 1. 启动浏览器，优先无头；如果目标对 headless 敏感，再切有头。
 2. 首轮导航不加 hook，读取状态码、重定向链、挑战页和真实业务请求。
-3. 行为型签名可使用 `pre_inject_hooks` 让 `xhr/fetch/cookie/runtime_probe` 先于页面脚本注入。
+3. 行为型签名可使用 `pre_inject_hooks` 或 `inject_hook_preset` 让 `xhr/fetch/cookie/runtime_probe` 在合适时机注入。
 4. 使用 `compare_env` 采集粗粒度环境，再用 `evaluate_js` 分批采集细粒度环境。
-5. 对 Cookie 使用 `analyze_cookie_sources` 区分 JS 写入和 HTTP `Set-Cookie`。
-6. 对 JSVMP 使用低侵入探针优先，必要时再源码级插桩。
+5. 对 Cookie 使用组合证据区分 JS 写入和 HTTP `Set-Cookie`：`network_capture` / `list_network_requests` / `get_network_request` / `inject_hook_preset("cookie")` / `cookies`。
+6. 对 JSVMP 使用 `hook_jsvmp_interpreter` 等低侵入探针优先，必要时再用 `instrumentation` 做源码级插桩。
 
 推荐采集批次：
 
