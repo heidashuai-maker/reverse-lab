@@ -132,11 +132,15 @@ def classify_card_response(response):
     return "unknown"
 
 
-def generate_cookies_in_page(client, trace_wasm=False):
+def generate_cookies_in_page(client, trace_wasm=False, trace_wasm_imports=False, trace_wasm_heap=False):
     expression = r"""
 (async () => {
   const traceEnabled = __TRACE_WASM__;
+  const importTraceEnabled = __TRACE_WASM_IMPORTS__;
+  const heapTraceEnabled = __TRACE_WASM_HEAP__;
   const wasmTrace = [];
+  const wasmImportTrace = [];
+  const wasmHeapTrace = [];
   const traceValue = (value) => {
     if (value === null) return 'null';
     if (typeof value === 'undefined') return 'undefined';
@@ -154,6 +158,287 @@ def generate_cookies_in_page(client, trace_wasm=False):
       if (arguments.length >= 4) return originalReflectSet(target, key, value, receiver);
       return originalReflectSet(target, key, value);
     };
+  };
+  const installWasmImportTrace = () => {
+    if (!importTraceEnabled) return;
+    const originalInstantiate = WebAssembly.instantiate;
+    const originalInstantiateStreaming = WebAssembly.instantiateStreaming;
+    const decoder = new TextDecoder('utf-8', {ignoreBOM: true, fatal: false});
+    let sequence = 0;
+    let currentExports = null;
+
+    const captureExports = (result) => {
+      const instance = result instanceof WebAssembly.Instance ? result : result && result.instance;
+      if (instance && instance.exports) {
+        currentExports = instance.exports;
+        wasmImportTrace.push({
+          phase: 'exports',
+          exports: Object.keys(currentExports).sort(),
+          hasMemory: currentExports.memory instanceof WebAssembly.Memory,
+        });
+      }
+      return result;
+    };
+
+    const readWasmString = (pointer, length) => {
+      if (!currentExports || !(currentExports.memory instanceof WebAssembly.Memory)) return null;
+      if (!Number.isInteger(pointer) || !Number.isInteger(length) || pointer < 0 || length < 0) return null;
+      try {
+        const bytes = new Uint8Array(currentExports.memory.buffer, pointer, length);
+        return decoder.decode(bytes);
+      } catch (error) {
+        return `[decode-error:${error && error.message ? error.message : error}]`;
+      }
+    };
+
+    const readWasmI32 = (pointer) => {
+      if (!currentExports || !(currentExports.memory instanceof WebAssembly.Memory)) return null;
+      try {
+        return new DataView(currentExports.memory.buffer).getInt32(pointer, true);
+      } catch (error) {
+        return null;
+      }
+    };
+
+    const readWasmF64 = (pointer) => {
+      if (!currentExports || !(currentExports.memory instanceof WebAssembly.Memory)) return null;
+      try {
+        return new DataView(currentExports.memory.buffer).getFloat64(pointer, true);
+      } catch (error) {
+        return null;
+      }
+    };
+
+    const readWasmOutString = (outPointer) => {
+      const pointer = readWasmI32(outPointer);
+      const length = readWasmI32(outPointer + 4);
+      if (pointer === null || length === null) return null;
+      return {pointer, length, value: readWasmString(pointer, length)};
+    };
+
+    const describeImportValue = (value) => {
+      if (value === null) return {type: 'null', value: null};
+      if (typeof value === 'undefined') return {type: 'undefined'};
+      if (typeof value === 'number' || typeof value === 'boolean' || typeof value === 'string') {
+        return {type: typeof value, value};
+      }
+      if (ArrayBuffer.isView(value)) {
+        return {
+          type: value.constructor.name,
+          length: value.length,
+          preview: Array.from(value.slice ? value.slice(0, 16) : value).slice(0, 16),
+        };
+      }
+      if (value instanceof WebAssembly.Instance) return {type: 'WebAssembly.Instance'};
+      if (value instanceof WebAssembly.Module) return {type: 'WebAssembly.Module'};
+      if (value instanceof WebAssembly.Memory) return {type: 'WebAssembly.Memory'};
+      if (value && typeof value.then === 'function') return {type: 'Promise'};
+      try {
+        return {
+          type: Object.prototype.toString.call(value),
+          constructorName: value && value.constructor && value.constructor.name,
+        };
+      } catch (error) {
+        return {type: typeof value};
+      }
+    };
+
+    const describeImportError = (error) => ({
+      name: error && error.name,
+      message: error && error.message,
+      stackHead: error && error.stack ? String(error.stack).split('\n').slice(0, 3) : undefined,
+    });
+
+    const stringPairsByName = {
+      __wbindgen_string_new: [[0, 1, 'string']],
+      __wbg_testregexp_5e5e24c14542431c: [[0, 1, 'pattern']],
+      __wbg_getfirstmatch_9679c7c35bbd6ccf: [[1, 2, 'input'], [3, 4, 'pattern']],
+      __wbg_newnoargs_c4b2cbbd30e2d057: [[0, 1, 'body']],
+      __wbg_join_b6efd1e111c0dd52: [[1, 2, 'separator']],
+      __wbg_setcookie_b04b7af29c82f976: [[0, 1, 'cookie']],
+      __widl_f_create_element_Document: [[1, 2, 'tagName']],
+      __widl_f_create_event_Document: [[1, 2, 'eventName']],
+      __widl_f_get_element_by_id_Document: [[1, 2, 'id']],
+      __widl_f_has_attribute_Element: [[1, 2, 'attribute']],
+      __widl_f_set_attribute_Element: [[1, 2, 'attribute'], [3, 4, 'value']],
+      __widl_f_get_context_HTMLCanvasElement: [[1, 2, 'contextId']],
+      __widl_f_set_srcdoc_HTMLIFrameElement: [[1, 2, 'srcdoc']],
+      __widl_f_set_value_HTMLInputElement: [[1, 2, 'value']],
+      __widl_f_get_extension_WebGLRenderingContext: [[1, 2, 'extension']],
+      __widl_f_match_media_Window: [[1, 2, 'query']],
+    };
+
+    const describeImportArgs = (name, args) => {
+      const values = Array.from(args, describeImportValue);
+      const decodedStrings = [];
+      for (const [pointerIndex, lengthIndex, label] of stringPairsByName[name] || []) {
+        decodedStrings.push({
+          label,
+          pointer: args[pointerIndex],
+          length: args[lengthIndex],
+          value: readWasmString(args[pointerIndex], args[lengthIndex]),
+        });
+      }
+      if (decodedStrings.length > 0) values.push({decodedStrings});
+      if (name === '__wbg_setcookie_b04b7af29c82f976') {
+        values.push({decodedCookie: readWasmString(args[0], args[1])});
+      }
+      return values;
+    };
+
+    const outStringNames = new Set([
+      '__wbg_functiontostring_a49d6e11424fca6f',
+      '__wbg_getfirstmatch_9679c7c35bbd6ccf',
+      '__wbindgen_debug_string',
+      '__wbindgen_string_get',
+      '__widl_f_hostname_Location',
+      '__widl_f_protocol_Location',
+      '__widl_f_user_agent_Navigator',
+      '__widl_f_value_HTMLInputElement',
+    ]);
+
+    const describePostCallMemory = (name, args) => {
+      if (outStringNames.has(name)) return {outString: readWasmOutString(args[0])};
+      if (name === '__wbindgen_number_get') return {isNumber: Boolean(readWasmI32(args[0])), value: readWasmF64(args[0] + 8)};
+      return null;
+    };
+
+    const shouldCaptureImportStack = (name) => (
+      name === '__wbg_setcookie_b04b7af29c82f976' ||
+      name === '__wbg_getfirstmatch_9679c7c35bbd6ccf' ||
+      name === '__widl_f_hostname_Location' ||
+      name === '__widl_f_user_agent_Navigator' ||
+      name === '__wbg_testregexp_5e5e24c14542431c' ||
+      name === '__wbg_stringtonumber_95f60f6c5fcb82cc' ||
+      name === '__wbg_getparser_31d8e9a24afafd4c'
+    );
+
+    const captureImportStack = () => {
+      const stack = new Error('ru-wasm-import-stack').stack;
+      return stack ? String(stack).split('\\n').slice(1, 14) : [];
+    };
+
+    const wrapImports = (imports) => {
+      if (!imports || !imports.wbg) return imports;
+      for (const [name, original] of Object.entries(imports.wbg)) {
+        if (typeof original !== 'function' || original.__ruWasmImportWrapped) continue;
+        const wrapped = function wasmImportWrapper(...args) {
+          const seq = ++sequence;
+          const entry = {seq, phase: 'call', name, args: describeImportArgs(name, args)};
+          if (shouldCaptureImportStack(name)) entry.stack = captureImportStack();
+          wasmImportTrace.push(entry);
+          try {
+            const result = original.apply(this, args);
+            entry.result = describeImportValue(result);
+            const postCallMemory = describePostCallMemory(name, args);
+            if (postCallMemory) entry.memory = postCallMemory;
+            if (name === '__wbg_setcookie_b04b7af29c82f976') entry.documentCookieAfter = document.cookie;
+            if (result && typeof result.then === 'function') {
+              result.then(
+                (value) => wasmImportTrace.push({seq, phase: 'promise-resolve', name, value: describeImportValue(value)}),
+                (error) => wasmImportTrace.push({seq, phase: 'promise-reject', name, error: describeImportError(error)}),
+              );
+            }
+            return result;
+          } catch (error) {
+            entry.throw = describeImportError(error);
+            throw error;
+          }
+        };
+        Object.defineProperty(wrapped, '__ruWasmImportWrapped', {value: true});
+        imports.wbg[name] = wrapped;
+      }
+      wasmImportTrace.push({
+        phase: 'imports-wrapped',
+        count: Object.keys(imports.wbg).length,
+        names: Object.keys(imports.wbg).sort(),
+      });
+      return imports;
+    };
+
+    WebAssembly.instantiate = function instantiate(source, imports) {
+      wrapImports(imports);
+      const result = originalInstantiate.call(WebAssembly, source, imports);
+      if (result && typeof result.then === 'function') return result.then(captureExports);
+      return captureExports(result);
+    };
+
+    if (typeof originalInstantiateStreaming === 'function') {
+      WebAssembly.instantiateStreaming = function instantiateStreaming(source, imports) {
+        wrapImports(imports);
+        const result = originalInstantiateStreaming.call(WebAssembly, source, imports);
+        if (result && typeof result.then === 'function') return result.then(captureExports);
+        return captureExports(result);
+      };
+    }
+  };
+  const instrumentWasmRuntimeSource = (source) => {
+    const preambleNeedle = '"use strict";';
+    const preambleReplacement = `"use strict";function __ruWasmRecord(phase,data){try{var trace=globalThis.__ruWasmHeapTrace;if(!trace)return;var limit=globalThis.__ruWasmHeapTraceLimit||200000;if(trace.length>=limit)return;var entry={phase:phase,seq:globalThis.__ruWasmHeapTraceSeq__=(globalThis.__ruWasmHeapTraceSeq__||0)+1};if(data){for(var key in data)entry[key]=data[key]}trace.push(entry)}catch(_){}}function __ruWasmDescribe(value,depth){try{depth=depth||0;if(value===null)return{type:"null",value:null};var valueType=typeof value;if(valueType==="undefined")return{type:"undefined"};if(valueType==="number"||valueType==="boolean")return{type:valueType,value:value};if(valueType==="string")return{type:"string",length:value.length,value:value.length>200?value.slice(0,200):value};if(valueType==="function"){var text="";try{text=Function.prototype.toString.call(value)}catch(_){text=String(value)}return{type:"function",name:value.name||"",string:text.slice(0,160)}}if(ArrayBuffer.isView(value)){var preview=[];try{preview=Array.from(value.slice?value.slice(0,16):value).slice(0,16)}catch(_){}return{type:value.constructor&&value.constructor.name||"TypedArray",length:value.length,preview:preview}}if(Array.isArray(value)){return{type:"Array",length:value.length,preview:depth>0?undefined:value.slice(0,8).map(function(item){return __ruWasmDescribe(item,depth+1)})}}if(value&&typeof value.then==="function")return{type:"Promise"};var tag=Object.prototype.toString.call(value);var out={type:tag,constructorName:value&&value.constructor&&value.constructor.name};["kind","label","deviceId","groupId","state","matches","media","name","filename","description","suffixes","length","value","id","tagName","nodeName"].forEach(function(key){try{var item=value[key];if(typeof item==="string"||typeof item==="number"||typeof item==="boolean"||item===null)out[key]=item}catch(_){}});try{var keys=Object.keys(value);if(keys&&keys.length)out.keys=keys.slice(0,12)}catch(_){}return out}catch(error){return{type:typeof value,error:error&&error.message?error.message:String(error)}}}__ruWasmRecord("heap-trace-installed",{});`;
+    if (!source.includes(preambleNeedle)) throw new Error('wasm.js strict-mode signature changed');
+    source = source.replace(preambleNeedle, preambleReplacement);
+    const replacements = [
+      [
+        `function i(n){var e,t=c(n);return(e=n)<36||(_[e]=r,r=e),t}`,
+        `function i(n){var e,t=c(n);return __ruWasmRecord("heap-drop",{handle:n,value:__ruWasmDescribe(t)}),(e=n)<36||(_[e]=r,r=e),t}`,
+        'drop-ref',
+      ],
+      [
+        `function l(n){r===_.length&&_.push(_.length+1);var e=r;return r=_[e],_[e]=n,e}`,
+        `function l(n){r===_.length&&_.push(_.length+1);var e=r;return r=_[e],_[e]=n,__ruWasmRecord("heap-set",{handle:e,value:__ruWasmDescribe(n)}),e}`,
+        'heap-set',
+      ],
+      [
+        `__wbg_push_446cc0334a2426e8=function(n,e){return c(n).push(c(e))}`,
+        `__wbg_push_446cc0334a2426e8=function(n,e){var t=c(n),_=c(e),r=t.push(_);return __ruWasmRecord("array-push",{arrayHandle:n,valueHandle:e,value:__ruWasmDescribe(_),array:__ruWasmDescribe(t),result:r}),r}`,
+        'array-push',
+      ],
+      [
+        `__wbg_join_b6efd1e111c0dd52=function(n,e,t){return l(c(n).join(w(e,t)))}`,
+        `__wbg_join_b6efd1e111c0dd52=function(n,e,t){var _=c(n),r=w(e,t),i=_.join(r);return __ruWasmRecord("array-join",{arrayHandle:n,array:__ruWasmDescribe(_),separator:r,result:i}),l(i)}`,
+        'array-join',
+      ],
+      [
+        `__wbg_all_f7b6ae27de68967a=function(n){return l(Promise.all(c(n)))}`,
+        `__wbg_all_f7b6ae27de68967a=function(n){var e=c(n);return __ruWasmRecord("promise-all",{arrayHandle:n,array:__ruWasmDescribe(e)}),l(Promise.all(e))}`,
+        'promise-all',
+      ],
+      [
+        `__wbg_catch_cf98b11ab7c29a4e=function(n,e){return l(c(n).catch(c(e)))}`,
+        `__wbg_catch_cf98b11ab7c29a4e=function(n,e){var t=c(n),_=c(e);return __ruWasmRecord("promise-catch",{promiseHandle:n,callbackHandle:e,promise:__ruWasmDescribe(t),callback:__ruWasmDescribe(_)}),l(t.catch(_))}`,
+        'promise-catch',
+      ],
+      [
+        `__wbg_then_b6fef331fde5cf0a=function(n,e){return l(c(n).then(c(e)))}`,
+        `__wbg_then_b6fef331fde5cf0a=function(n,e){var t=c(n),_=c(e);return __ruWasmRecord("promise-then",{promiseHandle:n,callbackHandle:e,promise:__ruWasmDescribe(t),callback:__ruWasmDescribe(_)}),l(t.then(_))}`,
+        'promise-then',
+      ],
+      [
+        `__wbg_finally_fff9b79028420a96=function(n,e){return l(c(n).finally(c(e)))}`,
+        `__wbg_finally_fff9b79028420a96=function(n,e){var t=c(n),_=c(e);return __ruWasmRecord("promise-finally",{promiseHandle:n,callbackHandle:e,promise:__ruWasmDescribe(t),callback:__ruWasmDescribe(_)}),l(t.finally(_))}`,
+        'promise-finally',
+      ],
+      [
+        `__wbg_set_8d5fd23e838df6b0=function(n,e,t){try{return Reflect.set(c(n),c(e),c(t))}catch(n){v(n)}}`,
+        `__wbg_set_8d5fd23e838df6b0=function(n,e,t){try{var _=c(n),r=c(e),i=c(t),o=Reflect.set(_,r,i);return __ruWasmRecord("reflect-set",{targetHandle:n,keyHandle:e,valueHandle:t,key:__ruWasmDescribe(r),value:__ruWasmDescribe(i),target:__ruWasmDescribe(_),result:o}),o}catch(n){v(n)}}`,
+        'reflect-set',
+      ],
+      [
+        `function _(){r.cnt++;var n,e,t=r.a;r.a=0;try{return n=t,e=r.b,void b._dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h5c9b8cfcb2588a53(n,e)}finally{0==--r.cnt?b.__wbindgen_export_2.get(255)(t,r.b):r.a=t}}`,
+        `function _(){r.cnt++;var n,e,t=r.a;r.a=0;try{return __ruWasmRecord("closure-call",{kind:"wrapper462",a:t,b:r.b,args:[]}),n=t,e=r.b,void b._dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h5c9b8cfcb2588a53(n,e)}finally{0==--r.cnt?b.__wbindgen_export_2.get(255)(t,r.b):r.a=t}}`,
+        'closure-wrapper462',
+      ],
+      [
+        `function _(n){i.cnt++;var e,t,_,r=i.a;i.a=0;try{return e=r,t=i.b,_=n,void b._dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h93011b86c70ce711(e,t,l(_))}finally{0==--i.cnt?b.__wbindgen_export_2.get(257)(r,i.b):i.a=r}}`,
+        `function _(n){i.cnt++;var e,t,_,r=i.a;i.a=0;try{return __ruWasmRecord("closure-call",{kind:"wrapper460",a:r,b:i.b,args:[__ruWasmDescribe(n)]}),e=r,t=i.b,_=n,void b._dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h93011b86c70ce711(e,t,l(_))}finally{0==--i.cnt?b.__wbindgen_export_2.get(257)(r,i.b):i.a=r}}`,
+        'closure-wrapper460',
+      ],
+    ];
+    for (const [needle, replacement, label] of replacements) {
+      if (!source.includes(needle)) throw new Error('wasm.js heap trace signature changed: ' + label);
+      source = source.replace(needle, replacement);
+    }
+    return source;
   };
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const loadScript = (src) => new Promise((resolve, reject) => {
@@ -176,7 +461,16 @@ def generate_cookies_in_page(client, trace_wasm=False):
   await window.fp.get();
 
   installTrace();
-  if (!window.wasm) {
+  installWasmImportTrace();
+  if (heapTraceEnabled) {
+    window.__ruWasmHeapTrace = wasmHeapTrace;
+    window.__ruWasmHeapTraceSeq__ = 0;
+    window.__ruWasmHeapTraceLimit = 200000;
+    const wasmJsUrl = '/Wasm/api/v1/wasm.js?_=' + Date.now();
+    const wasmJsResponse = await fetch(wasmJsUrl, { cache: 'no-store' });
+    if (!wasmJsResponse.ok) throw new Error('wasm.js fetch failed: ' + wasmJsResponse.status);
+    (0, eval)(instrumentWasmRuntimeSource(await wasmJsResponse.text()));
+  } else if (!window.wasm) {
     await loadScript('/Wasm/api/v1/wasm.js?_=' + Date.now());
   }
   await window.wasm.default('/Wasm/api/v1/wasm_bg.wasm?_=' + Date.now());
@@ -191,11 +485,15 @@ def generate_cookies_in_page(client, trace_wasm=False):
     webdriver: navigator.webdriver,
     pr_fp: (document.cookie.match(/(?:^|;\s*)pr_fp=([^;]+)/) || [])[1] || null,
     wasm: (document.cookie.match(/(?:^|;\s*)wasm=([^;]+)/) || [])[1] || null,
-    wasmTrace: traceEnabled ? wasmTrace : null
+    wasmTrace: traceEnabled ? wasmTrace : null,
+    wasmImportTrace: importTraceEnabled ? wasmImportTrace : null,
+    wasmHeapTrace: heapTraceEnabled ? wasmHeapTrace : null
   };
 })()
 """
     expression = expression.replace("__TRACE_WASM__", "true" if trace_wasm else "false")
+    expression = expression.replace("__TRACE_WASM_IMPORTS__", "true" if trace_wasm_imports else "false")
+    expression = expression.replace("__TRACE_WASM_HEAP__", "true" if trace_wasm_heap else "false")
     result = client.call(
         "Runtime.evaluate",
         {
@@ -481,6 +779,8 @@ def build_parser():
     parser.add_argument("--headless", action="store_true")
     parser.add_argument("--keep-profile", action="store_true")
     parser.add_argument("--trace-wasm", action="store_true")
+    parser.add_argument("--trace-wasm-imports", action="store_true")
+    parser.add_argument("--trace-wasm-heap", action="store_true")
     parser.add_argument("--output", default=str(TARGET_DIR / "samples" / "browser_generated_cookies_latest.json"))
     return parser
 
@@ -502,7 +802,12 @@ def main():
             client.call("Network.setUserAgentOverride", {"userAgent": DEFAULT_UA})
             client.call("Page.navigate", {"url": BASE_URL + "/"})
             time.sleep(8)
-            cookie_info = generate_cookies_in_page(client, trace_wasm=args.trace_wasm)
+            cookie_info = generate_cookies_in_page(
+                client,
+                trace_wasm=args.trace_wasm,
+                trace_wasm_imports=args.trace_wasm_imports,
+                trace_wasm_heap=args.trace_wasm_heap,
+            )
             env_profile = collect_environment_profile(client)
         finally:
             client.close()
@@ -525,6 +830,8 @@ def main():
             },
             "envProfile": env_profile,
             "wasmTrace": cookie_info.get("wasmTrace"),
+            "wasmImportTrace": cookie_info.get("wasmImportTrace"),
+            "wasmHeapTrace": cookie_info.get("wasmHeapTrace"),
             "requestValidation": validation,
         }
         output_path = Path(args.output)

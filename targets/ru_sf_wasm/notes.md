@@ -466,16 +466,121 @@ attempt[1]:
   pr_fp=a395c3361242fe6fce7a9962dfc6eedd572312ac2d77d6238c7f89448ac6cb6b
 ```
 
-结论：继续修改 Node 环境信息可以把“可见的 wasm 环境特征”对齐到真实 Chrome，但目前仍不能生成服务端认可的 `wasm` cookie。剩余差异大概率不在 `Reflect.set` 暴露的对象字段里，而在 wasm 内部不可见的宿主/realm/原型/Promise/WebAssembly/错误栈/对象身份等行为差异中。当前可交付策略应保持：
+当时结论：继续修改 Node 环境信息可以把“可见的 wasm 环境特征”对齐到真实 Chrome，但当时仍不能生成服务端认可的 `wasm` cookie。该结论已在 2026-06-17 修正：根因不是 UA 或不可见宿主差异，而是本地 `wasm.js/wasm_bg.wasm` 素材版本落后线上当前版本。下面保留当时的处置方向作为历史记录：
 
 1. 默认研究方向：继续定位 wasm 内部最终 hash/分类入口，或更细粒度 hook wasm import/export、内存输入。
 2. 运行兜底方向：真实 Chrome/CDP 生成 `pr_fp/wasm`，Python requests 复用 cookie。
 3. `test01.py` 当前行为：先尝试 Node；Node 失败后才触发 `browser_fallback`。
 
+## 2026-06-17 WASM 版本漂移与生成链复核
+
+本轮继续分析 `wasm` 生成链路后，确认 UA 不是主因：Node 与真实 Chrome/CDP 侧读取到的 UA、`appVersion`、UAParser 结果一致，非 heap import trace 的调用名序列也完全一致。额外把 helper UA 分别改成 Chrome/149 和 Firefox/126 做受控生成，`pr_fp` 会随 UA 变化，但 `wasm` 仍保持当前值；Chrome/149 UA 的实际请求也通过详情页验证。
+
+真正差异来自本地 `source/wasm.js` 和 `source/wasm_bg.wasm` 曾落后线上当前版本。2026-06-17 16:20 左右再次复核时，线上素材又发生轮换；当前已更新为线上新副本：
+
+```text
+wasm.js      sha256=478f2d68f8d03f37741d246516068d31d4c1904d97f2b61becc76823032f2a98
+wasm_bg.wasm sha256=1a08d765f82d3ca401ac04c45347ea0a5a17a3338bc4ead8b0ed6897ab2d1426
+```
+
+这轮轮换直接改变最终 `wasm` cookie：同一 Chrome/120 UA 下，浏览器和本地临时 source 均从上一轮 `9789750d7dc07a8f7444c134e3d32bf3` 变为当前 `46c7f57291f3751d115fd4224b195436`。因此当前失败排查应优先检查线上素材 hash，而不是先怀疑 UA。
+
+当前 Node helper 默认输出：
+
+```text
+pr_fp=e94c74962721a68ab05418066e68bf1fa90892f13c2cbc628cd0ef31825c045c
+wasm=46c7f57291f3751d115fd4224b195436
+```
+
+真实请求验证：
+
+```text
+python targets\ru_sf_wasm\output\kad_request.py --probe-card
+
+captchaGate.Result=false
+cardProbe.status_code=200
+cardProbe.classification=case_card_html
+```
+
+UA 对照验证：
+
+```text
+Chrome/149 UA:
+generated_pr_fp=a06db5bd10c00b619a122afe05065f1d2961fd1d9eb3c32e04e418d05d4ec02d
+generated_wasm=46c7f57291f3751d115fd4224b195436
+captchaGate.Result=false
+cardProbe.status_code=200
+
+Firefox/126 UA:
+generated_pr_fp=5ee3e45571ed59a8a8b2d7df8337c0055580b8e8a895089c1ff6c69f223d47fd
+generated_wasm=46c7f57291f3751d115fd4224b195436
+```
+
+新增 `scripts/analyze_wasm_generation.js`，用于离线汇总当前 `wasm.js/wasm_bg.wasm` 的 imports/exports、import 分类、最终 `__wbg_setcookie` sink、风险特征对象和 Node-vs-browser trace 对比。当前摘要文件：
+
+```text
+targets/ru_sf_wasm/samples/wasm_generation_summary_latest.json
+```
+
+当前 wasm-bindgen 模块形态：
+
+- `wasm_bg.wasm` import 数量：122。
+- `wasm_bg.wasm` defined function 数量：394，`call_indirect` 数量：70，当前轻量 parser 无解析错误。
+- `main` 和 `__wbindgen_start` 导出到同一个函数 index 510。
+- 静态直达 call graph 中，index 510 可达 73 个 defined functions，但不直接可达 `__wbg_setcookie_b04b7af29c82f976`；最终写 cookie 由 wasm-bindgen closure / Promise 异步回调路径触发。
+- 主要 import 分类：WebIDL 环境读取 59 个、wasm-bindgen runtime 17 个、JS reflection/collections 22 个、主动探针 6 个、cookie sink 1 个。
+- 最终 sink：`__wbg_setcookie_b04b7af29c82f976`。
+- 生成的 cookie 字符串：`wasm=46c7f57291f3751d115fd4224b195436; max-age=450; domain=.arbitr.ru; path=/; samesite=none; secure`。
+- 动态 trace 中 `setcookie` 调用 2 次，两次写入值相同；写入前均读取 `location.hostname=kad.arbitr.ru`，再用 `\..*\..*$` 提取 `.arbitr.ru` 作为 cookie domain。
+- 风险特征对象集合：`PHANTOM_UA`、`PHANTOM_PROPERTIES`、`PHANTOM_ETSL`、`PHANTOM_LANGUAGE`、`PHANTOM_WEBSOCKET`、`PHANTOM_OVERFLOW`、`PHANTOM_WINDOW_HEIGHT`、`HEADCHR_UA`、`WEBDRIVER`、`HEADCHR_CHROME_OBJ`、`HEADCHR_PERMISSIONS`、`HEADCHR_IFRAME`、`SELENIUM_DRIVER`、`CHR_BATTERY`、`SEQUENTUM`。
+
+Node 与浏览器非 heap trace 对比：
+
+```text
+importCallCount: 10676 vs 10676
+firstImportNameDiff: -1
+setCookie.equal: true
+left.pr_fp=e94c74962721a68ab05418066e68bf1fa90892f13c2cbc628cd0ef31825c045c
+right.pr_fp=a395c3361242fe6fce7a9962dfc6eedd572312ac2d77d6238c7f89448ac6cb6b
+left.wasm=right.wasm=46c7f57291f3751d115fd4224b195436
+```
+
+当前 full trace 进一步确认 Node 与浏览器的 wasm-bindgen heap 阶段同序：
+
+```text
+wasmTrace:       448 vs 448
+wasmImportTrace: 10678 vs 10678
+wasmHeapTrace:   10246 vs 10246
+
+importNameSequenceSha256=69b9001d9c35bafdd4b5b44f2fa5712d9e89b8a9f7940f8b0591a1e5d5aad63f
+heapPhaseSequenceSha256=048b0f968dee34116aa5e74ac2eff53854ea3f6c5e2b3499abe035aa7f8531b6
+firstImportNameDiff=-1
+firstHeapPhaseDiff=-1
+```
+
+`wasm` 的生成形态可以概括为：
+
+1. wasm 先创建风险标签字典，包含 15 个标签：`PHANTOM_UA`、`PHANTOM_PROPERTIES`、`PHANTOM_ETSL`、`PHANTOM_LANGUAGE`、`PHANTOM_WEBSOCKET`、`PHANTOM_OVERFLOW`、`PHANTOM_WINDOW_HEIGHT`、`HEADCHR_UA`、`WEBDRIVER`、`HEADCHR_CHROME_OBJ`、`HEADCHR_PERMISSIONS`、`HEADCHR_IFRAME`、`SELENIUM_DRIVER`、`CHR_BATTERY`、`SEQUENTUM`。
+2. wasm 读取浏览器环境并组装 feature object；`consistent=3` 是当前正常样本的公共状态，代表该 feature 没被判成异常分支。
+3. 异步段通过 Promise 聚合 4 类探针结果，两轮 `Promise.all`，再由 wasm-bindgen closure 回调进入 wasm；当前 heap trace 中 `promise-all=2`、`closure-call=24`。
+4. 最终 sink 前读取 `location.hostname=kad.arbitr.ru`，用正则 `\..*\..*$` 提取 `.arbitr.ru`，再调用 `__wbg_setcookie_b04b7af29c82f976` 写入 `wasm=46c7f57291f3751d115fd4224b195436; max-age=450; domain=.arbitr.ru; path=/; samesite=none; secure`。该 sink 会触发两次，两次值相同。
+
+JS glue / heap trace 当前能看到的拼接物主要是浏览器插件与 MIMEType 指纹串，例如：
+
+```text
+application/pdf~pdf~Portable Document Format
+PDF Viewer::Portable Document Format::internal-pdf-viewer::
+Portable Document Format~~application/pdf~~pdf
+```
+
+静态 wasm 字符串中能看到完整探针字段、风险标签、`wasm=; max-age=; domain=; path=/; samesite=none; secure` 模板和 Rust `hashbrown` 痕迹，但没有直接暴露 `md5` / `sha` / `digest` 这类 hash 标识。把可见 feature object JSON、feature object 数组、风险标签串等常见序列直接做 MD5，均未命中 `46c7f57291f3751d115fd4224b195436`；因此当前可以确认 JS glue 层负责环境读值、异步探针、对象/数组拼接和 cookie sink，最终 32 位十六进制摘要仍是在 wasm 内部按私有序列化/哈希路径完成。
+
+剩余可见差异仅在 `resOverflow` 原始递归深度/stacklength 数值上；当前 full trace 中 number-get 差异只出现在对应的 stack/depth 数值，import/heap 执行顺序和最终 `wasm` 都一致，服务端验证也通过，说明该差异不会影响当前 cookie gate。若后续又出现 451，应优先检查线上 `wasm.js/wasm_bg.wasm` 是否再次轮换，其次再看 DDoS-Guard 会话、代理出口和请求频率。
+
 ## 风险与维护点
 
 - `fp.js`、`fp_bg.wasm`、`wasm.js`、`wasm_bg.wasm` 版本变化后，需要重新下载素材并复测 helper。
 - `pr_fp` 取决于本地环境桩，当前值可通过 gate，但如果服务端加强一致性校验，需要调整 UA、WebGL、canvas、navigator 等字段。
-- `wasm` cookie 当前稳定生成 `d26b7c65fcc34ab72bdb5a05dce32b45`，有效期约 450 秒。
+- `wasm` cookie 当前稳定生成 `46c7f57291f3751d115fd4224b195436`，有效期约 450 秒；该值绑定当前 `wasm.js/wasm_bg.wasm` source pair，不应跨版本复用。
 - 451 与验证码判定属于 cookie gate 之后的独立问题，不应误判为 `pr_fp/wasm` 生成失败。
 - DDoS-Guard challenge HTML 属于 cookie gate 之前的外层拦截；优先检查 `__ddg*`、UA、TLS 指纹、请求频率和 IP 状态。

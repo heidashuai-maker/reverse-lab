@@ -70,7 +70,7 @@ targets/<source-name>/
 | `scripts/env/*` | 当前本地重建入口、补丁、polyfill 和固定上下文 |
 | `output/*` | 验证后的可运行交付代码 |
 
-`notes.md` 用中文记录结论和证据索引，不粘贴大段源码。
+`notes.md` 用中文记录结论和证据索引，可新增关键代码，不粘贴大段源码。
 
 ## Browser Tool Policy
 
@@ -107,5 +107,3 @@ reason: <为什么转交>
 4. `evals/*` 中的 expected skill
 5. `.agents/skills/` 和 `.codex/skills/` 中的 active 副本
 6. `tools/list-skills.ps1` / `tools/audit-skills.ps1` 的输出假设
-
-不要新增 `CLAUDE.md` 或 `.claude/skills` 维护链路。

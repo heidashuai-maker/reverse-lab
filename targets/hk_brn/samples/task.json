@@ -1,0 +1,14 @@
+{
+  "taskId": "hk-brn-session-init-fix",
+  "slug": "hk_brn",
+  "stage": "Patch",
+  "targetPage": "https://btp.etax.ird.gov.hk/fe/pw/brn/init?language=ZH_HK&setInit=true",
+  "targetProgram": "D:\\code\\spider2\\spiders\\HkBrnSpider.py",
+  "classification": ["session-gated", "verifier-gated"],
+  "successCriteria": [
+    "初始化 session 不再主动调用 generateTrn/v1",
+    "后续 API 跟随 ntp-ccc-prd 分配的 btp1/btp2 host",
+    "验证码和 checkApplyDoc 使用同一个 api_host、ntp-client-id 和 screenid"
+  ],
+  "summary": "历史浏览器实测显示 generateTrn/v1 在缺少 Surge login token 时返回 Missing login token。当前修复将 generateTrn 从初始化链路移除，并保留动态站点会话状态。"
+}

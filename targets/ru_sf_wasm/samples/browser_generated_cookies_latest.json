@@ -1,11 +1,11 @@
 {
   "chrome": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-  "debugger": "Chrome/149.0.7827.53",
+  "debugger": "Chrome/149.0.7827.103",
   "headless": true,
-  "profileDir": "D:\\code\\reverse-lab\\js_reverse_cache\\ru_sf_wasm\\chrome_profile_ivgvwr52",
+  "profileDir": "D:\\code\\reverse-lab\\js_reverse_cache\\ru_sf_wasm\\chrome_profile_rx_uvw86",
   "cookies": {
     "pr_fp": "a395c3361242fe6fce7a9962dfc6eedd572312ac2d77d6238c7f89448ac6cb6b",
-    "wasm": "0b10300a0ff2cad10a49909851b27352"
+    "wasm": "46c7f57291f3751d115fd4224b195436"
   },
   "browserContext": {
     "href": "https://kad.arbitr.ru/",
@@ -593,6 +593,8 @@
     }
   },
   "wasmTrace": null,
+  "wasmImportTrace": null,
+  "wasmHeapTrace": null,
   "requestValidation": {
     "status_code": 200,
     "classification": "case_card_html",
