@@ -8,6 +8,7 @@
 2. 先沉淀证据，再进入补环境、移植或协议交付。
 3. 目标材料只写入 `targets/<site>/`、`js_reverse_cache/` 或 `cases/`，不写入 skill 目录。
 4. Camoufox / CloakBrowser 采集到的是浏览器家族事实，不能混补。
+5. 选出任务路线后先查 `cases/README.md`；命中已验证案例时，优先复用案例里的定位路径、代码骨架和可验证事实清单。
 
 ## 路由表
 
@@ -22,6 +23,31 @@
 | WAF/JS challenge 动态 cookie 复现，且目标是可复用脚本 | `waf-cookie-pure-first` | 不要硬编码一次性浏览器 cookie |
 | 滑块验证码协议链路、轨迹、厂商参数生成 | `captcha-slide-reverse` | 不要仅因有 JS 加密就走验证码 skill |
 | 明确要 Python + iv8 + requests 紧凑脚本 | `iv8-web-reverse` 或更窄的 `adapters/*-iv8` | 不要转到不存在的外部 skill |
+
+## Case Library Gate
+
+在进入具体 skill 的重建阶段前，执行一次 case 检索：
+
+```text
+target fingerprints
+  -> cases/README.md index
+  -> matching case 指纹检测规则
+  -> 已验证定位路径
+  -> targets/<site>/ 中落地证据与代码
+```
+
+当前内置案例入口：
+
+| 技术指纹 | 优先读取 |
+| --- | --- |
+| while-switch / dispatch loop / 大字节码数组 / VMP wrapper | `cases/vmp/universal-vmp-source-instrumentation.md` |
+| 安全 SDK glue / XHR 拦截器 / 长签名参数 / jsdom 环境伪装 | `cases/vmp/jsvmp-xhr-interceptor-env-emulation.md` |
+| cacheOpts / XHR+fetch 双通道 / URL 签名 + header 签名 | `cases/vmp/jsvmp-dual-sign-cacheopts-firefox.md` |
+| HTTP 412 challenge / `$_ts.nsd/cd` / 同 basename 的 `XxxYyyZzz2AaaaS/T` Cookie 对 | `cases/waf-cookie/rs6-cookie-412-sdenv.md` |
+| `.wasm` / `WebAssembly.instantiate` / `WebAssembly.Memory` / `wasm-bindgen` / `Module.cwrap` | `cases/wasm-protocol-recovery-playbook.md` |
+| `pr_fp` + `wasm` 双 Cookie / `fp_bg.wasm` + `wasm_bg.wasm` / `__wbg_setcookie_*` / `wasm.main()` | `cases/wasm/wasm-bindgen-pr-fp-wasm-cookie-gate.md` |
+
+case 只能保存脱敏后的通用经验；真实目标材料仍放入 `targets/<site>/` 或 `js_reverse_cache/`。
 
 ## Camoufox 证据层
 

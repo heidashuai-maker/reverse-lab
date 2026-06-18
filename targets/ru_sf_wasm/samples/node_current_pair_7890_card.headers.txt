@@ -1,0 +1,26 @@
+HTTP/1.1 200 Connection established
+
+HTTP/1.1 200 OK
+Server: ddos-guard
+Connection: keep-alive
+Keep-Alive: timeout=60
+Set-Cookie: __ddg8_=oQRvZR8UIuBtGxpB; Domain=.arbitr.ru; Path=/; Expires=Wed, 17-Jun-2026 16:11:37 GMT
+Set-Cookie: __ddg10_=1781711497; Domain=.arbitr.ru; Path=/; Expires=Wed, 17-Jun-2026 16:11:37 GMT
+Set-Cookie: __ddg9_=103.151.173.91; Domain=.arbitr.ru; Path=/; Expires=Wed, 17-Jun-2026 16:11:37 GMT
+Strict-Transport-Security: max-age=86400
+Content-Security-Policy: upgrade-insecure-requests;
+Set-Cookie: __ddg1_=0wWYK3leBaUHKcdBwZKC; Domain=.arbitr.ru; HttpOnly; Path=/; Expires=Thu, 17-Jun-2027 15:51:37 GMT
+cache-control: no-cache, no-store, must-revalidate
+pragma: no-cache
+content-type: text/html; charset=utf-8
+set-cookie: ASP.NET_SessionId=ybqmhxiljpot4q42q35x13jw; path=/; HttpOnly
+set-cookie: rcid=f94666b6-5788-4ce8-9ef9-4dece0dd99ab; domain=arbitr.ru; path=/; SameSite=None; Secure
+set-cookie: KadLVCards=%d0%9088-435%2f2026; domain=.arbitr.ru; expires=Sat, 27-Jun-2026 15:51:37 GMT; path=/; secure
+set-cookie: ASP.NET_SessionId=ybqmhxiljpot4q42q35x13jw; path=/; HttpOnly
+set-cookie: rcid=f94666b6-5788-4ce8-9ef9-4dece0dd99ab; domain=arbitr.ru; path=/; SameSite=None; Secure
+set-cookie: KadLVCards=%d0%9088-435%2f2026; domain=.arbitr.ru; expires=Sat, 27-Jun-2026 15:51:37 GMT; path=/; secure
+set-cookie: CUID=d2a1b8b3-feae-426e-b5aa-2d4c55fbc81e:NPP82vu6YAVLBhiJw+RnVw==; domain=.arbitr.ru; expires=Tue, 17-Jun-2036 15:51:37 GMT; path=/; HttpOnly
+date: Wed, 17 Jun 2026 15:51:37 GMT
+content-length: 198669
+content-security-policy: upgrade-insecure-requests
+

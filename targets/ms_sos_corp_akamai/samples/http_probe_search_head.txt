@@ -1,0 +1,20 @@
+﻿HTTP/1.1 200 Connection established
+
+HTTP/1.1 200 OK
+Content-Length: 45555
+Content-Type: text/html; charset=utf-8
+Access-Control-Allow-Origin: https://corp.sos.ms.gov
+Access-Control-Allow-Methods: GET,POST
+Access-Control-Allow-Headers: X-Requested-With, Content-Type
+Expires: Wed, 17 Jun 2026 16:02:02 GMT
+Cache-Control: max-age=0, no-cache, no-store
+Pragma: no-cache
+Date: Wed, 17 Jun 2026 16:02:02 GMT
+Connection: keep-alive
+Set-Cookie: MSOS_Corp_SessionId=oxukjxyodugq3judtiyojaiu; path=/; HttpOnly; SameSite=Lax
+Set-Cookie: TS01f5c3b0=01fc6bdc821bb433a81d330c1144b1adacc9c6cd4a337f4da4801c3f519ea9c64d0fb79f875e557d17dab77c768618c4c7f402168a1185fc9cfd40cfea21025f832e560975; Path=/
+Alt-Svc: h3=":443"; ma=93600
+Akamai-GRN: 0.8b5ccc17.1781712122.68f8bd83
+Strict-Transport-Security: max-age=86400
+Server-Timing: ak_p; desc="1781712121863_399269003_1761131907_29987_58800_55_254_-";dur=1
+

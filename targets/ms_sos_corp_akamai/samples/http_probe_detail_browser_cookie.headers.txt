@@ -1,0 +1,18 @@
+HTTP/1.1 200 Connection established
+
+HTTP/1.1 403 Forbidden
+Mime-Version: 1.0
+Content-Type: text/html
+Content-Length: 465
+Expires: Wed, 17 Jun 2026 16:02:03 GMT
+Cache-Control: max-age=0, no-cache, no-store
+Pragma: no-cache
+Date: Wed, 17 Jun 2026 16:02:03 GMT
+Connection: close
+Server-Timing: cdn-cache; desc=HIT
+Server-Timing: edge; dur=1
+Alt-Svc: h3=":443"; ma=93600
+Akamai-GRN: 0.8b5ccc17.1781712123.68f8c9ee
+Strict-Transport-Security: max-age=86400
+Server-Timing: ak_p; desc="1781712123553_399269003_1761135086_19_18201_64_210_-";dur=1
+

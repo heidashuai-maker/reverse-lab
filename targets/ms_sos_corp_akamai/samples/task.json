@@ -1,0 +1,38 @@
+{
+  "target": "https://corp.sos.ms.gov/corp/portal/c/page/corpbusinessidsearch/portal.aspx",
+  "source_name": "ms_sos_corp_akamai",
+  "stage": "observe",
+  "question": "Confirm whether the corporation business detail flow uses Akamai technology.",
+  "result": {
+    "uses_akamai": true,
+    "confidence": "high",
+    "scope": "Search page, business-name API, detail XHR, detail helper script, Akamai sensor script and sensor POST all showed Akamai edge evidence or Bot Manager behavior."
+  },
+  "sample_business": {
+    "search_term": "WALMART",
+    "business_name": "WAL-MART ASSOCIATES, INC.",
+    "business_id": "636136",
+    "filing_id": "31734e49-817e-4e9f-9ea0-4ec10aa212a9"
+  },
+  "tools_used": [
+    "curl.exe low-intrusion HTTP probe",
+    "mcp__camoufox_reverse browser launch/navigation/network capture",
+    "mcp__camoufox_reverse scripts.save",
+    "mcp__camoufox_reverse export_state",
+    "static search over saved BusinessSearchScriptV2.js"
+  ],
+  "artifacts": [
+    "source/BusinessSearchScriptV2.js",
+    "source/akamai_sensor_ywwgo.js",
+    "samples/browser-state-camoufox.json",
+    "samples/network.jsonl",
+    "samples/scripts.jsonl",
+    "samples/runtime-evidence.jsonl",
+    "samples/http_probe_search_head.txt",
+    "samples/http_probe_search_get.headers.txt",
+    "samples/http_probe_detail_browser_cookie.headers.txt",
+    "scripts/probe_akamai_headers.ps1",
+    "output/akamai_assessment.json",
+    "notes.md"
+  ]
+}

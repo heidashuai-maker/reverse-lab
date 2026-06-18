@@ -1,0 +1,2065 @@
+{
+  "generatedAt": "2026-06-17T15:53:16.335Z",
+  "source": {
+    "wasmJsPath": "D:\\AAA\\reverse-lab\\js_reverse_cache\\ru_sf_wasm\\live_7890\\wasm.js",
+    "wasmPath": "D:\\AAA\\reverse-lab\\js_reverse_cache\\ru_sf_wasm\\live_7890\\wasm_bg.wasm",
+    "wasmJsBytes": 16877,
+    "wasmBytes": 140208,
+    "wasmJsSha256": "629506b643500d4650b9795ff4e8f0c71cd53d78c55c119e26a5abe68bbe514f",
+    "wasmSha256": "bb0c1d4f8f88ef177cf5c66a6d974a9609a45503d60eb94d4d4264a12998f660"
+  },
+  "module": {
+    "importsCount": 122,
+    "exportsCount": 12,
+    "imports": [
+      {
+        "module": "wbg",
+        "name": "__wbg_resoverflow_3101caf8eda0c7cd",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_accelerometerused_5ad897388b6b49ec",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_debugtool_6f32d39e5cc537ac",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_object_drop_ref",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_string_new",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_is_falsy",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_number_new",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_is_undefined",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_object_clone_ref",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_cb_forget",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_functiontostring_a49d6e11424fca6f",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_errorsgenerated_532990a2d4eb2ca2",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_detailchrome_af833e5cfeba0ffd",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_is_null",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_execfunction1_a504dc48c82cd335",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_execfunction0_aabb814815a591f3",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_typeof_698627098f3290a4",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_tpcanvas_427a143acee8f3fd",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_execmethod_cf67844f081feac4",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_testregexp_5e5e24c14542431c",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_objectsome_7f42fa9fe4f455ba",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_stringtonumber_95f60f6c5fcb82cc",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_getparser_31d8e9a24afafd4c",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_getfirstmatch_9679c7c35bbd6ccf",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_setcookie_b04b7af29c82f976",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_instanceof_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_create_element_Document",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_create_event_Document",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_get_element_by_id_Document",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_document_element_Document",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_body_Document",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_has_attribute_Element",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_set_attribute_Element",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_client_width_Element",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_client_height_Element",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_instanceof_HTMLCanvasElement",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_get_context_HTMLCanvasElement",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_instanceof_HTMLIFrameElement",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_set_srcdoc_HTMLIFrameElement",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_content_window_HTMLIFrameElement",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_instanceof_HTMLInputElement",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_value_HTMLInputElement",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_set_value_HTMLInputElement",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_protocol_Location",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_hostname_Location",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_enumerate_devices_MediaDevices",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_matches_MediaQueryList",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_item_MimeTypeArray",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_length_MimeTypeArray",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_permissions_Navigator",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_mime_types_Navigator",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_plugins_Navigator",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_media_devices_Navigator",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_user_agent_Navigator",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_append_child_Node",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_remove_child_Node",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_query_Permissions",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_item_Plugin",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_length_Plugin",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_item_PluginArray",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_length_PluginArray",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_avail_width_Screen",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_avail_height_Screen",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_width_Screen",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_height_Screen",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_color_depth_Screen",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_pixel_depth_Screen",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_instanceof_WebGLRenderingContext",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_get_extension_WebGLRenderingContext",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_get_parameter_WebGLRenderingContext",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_get_supported_extensions_WebGLRenderingContext",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_match_media_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_document_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_location_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_navigator_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_screen_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_inner_width_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_inner_height_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_page_x_offset_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_page_y_offset_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_screen_x_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_outer_width_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_outer_height_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__widl_f_device_pixel_ratio_Window",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_is_function",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_new_3c32f9cd3d7f4595",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_forEach_bd7728906f61e603",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_indexOf_831c1502a5fb1e4e",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_join_b6efd1e111c0dd52",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_push_446cc0334a2426e8",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_newnoargs_c4b2cbbd30e2d057",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_call_12b949cfc461d154",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_call_ce7cf17fc6380443",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_instanceof_Object_d35fc70d59ddc182",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_assign_d5e9bee34de00ffd",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_getOwnPropertyDescriptor_5c3d83450aca856a",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_getOwnPropertyNames_ea0935954373c185",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_getPrototypeOf_d385a96fa0736141",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_keys_538d9e4583d76ee6",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_new_7dd9b384a913884d",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_values_2be7c9efef20b00f",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_new_d3eff62d5c013634",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_all_f7b6ae27de68967a",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_catch_cf98b11ab7c29a4e",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_then_b6fef331fde5cf0a",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_finally_fff9b79028420a96",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_globalThis_22e06d4bea0084e3",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_self_00b0599bca667294",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_window_aa795c5aad79b8ac",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_global_cc239dc2303f417c",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_apply_5c2b47af834282d7",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_get_b086a3091905ea8f",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_has_f0897bce5f8ba669",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbg_set_8d5fd23e838df6b0",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_number_get",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_is_string",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_string_get",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_boolean_get",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_debug_string",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_throw",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_closure_wrapper462",
+        "kind": "function"
+      },
+      {
+        "module": "wbg",
+        "name": "__wbindgen_closure_wrapper460",
+        "kind": "function"
+      }
+    ],
+    "exports": [
+      {
+        "name": "memory",
+        "kind": "memory"
+      },
+      {
+        "name": "main",
+        "kind": "function"
+      },
+      {
+        "name": "__wbindgen_malloc",
+        "kind": "function"
+      },
+      {
+        "name": "__wbindgen_realloc",
+        "kind": "function"
+      },
+      {
+        "name": "__wbindgen_export_2",
+        "kind": "table"
+      },
+      {
+        "name": "_dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h93011b86c70ce711",
+        "kind": "function"
+      },
+      {
+        "name": "_dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h5c9b8cfcb2588a53",
+        "kind": "function"
+      },
+      {
+        "name": "__wbindgen_free",
+        "kind": "function"
+      },
+      {
+        "name": "__wbindgen_exn_store",
+        "kind": "function"
+      },
+      {
+        "name": "wasm_bindgen__convert__closures__invoke3_mut__ha9556e0b44fc67a4",
+        "kind": "function"
+      },
+      {
+        "name": "wasm_bindgen__convert__closures__invoke2_mut__h77bb85b34aab6ced",
+        "kind": "function"
+      },
+      {
+        "name": "__wbindgen_start",
+        "kind": "function"
+      }
+    ],
+    "importCategories": {
+      "active_probe": 6,
+      "cookie_sink": 1,
+      "global_object_access": 4,
+      "js_reflection_or_collections": 22,
+      "other": 9,
+      "ua_parser_or_regex": 4,
+      "wasm_bindgen_runtime": 17,
+      "webidl_env_read": 59
+    }
+  },
+  "binary": {
+    "version": "01000000",
+    "sections": [
+      {
+        "id": 1,
+        "size": 187,
+        "offset": 11
+      },
+      {
+        "id": 2,
+        "size": 4443,
+        "offset": 201
+      },
+      {
+        "id": 3,
+        "size": 396,
+        "offset": 4647
+      },
+      {
+        "id": 4,
+        "size": 7,
+        "offset": 5045
+      },
+      {
+        "id": 5,
+        "size": 3,
+        "offset": 5054
+      },
+      {
+        "id": 6,
+        "size": 9,
+        "offset": 5059
+      },
+      {
+        "id": 7,
+        "size": 534,
+        "offset": 5071
+      },
+      {
+        "id": 9,
+        "size": 669,
+        "offset": 5608
+      },
+      {
+        "id": 10,
+        "size": 118023,
+        "offset": 6281
+      },
+      {
+        "id": 11,
+        "size": 15776,
+        "offset": 124307
+      },
+      {
+        "id": 0,
+        "size": 123,
+        "offset": 140085
+      }
+    ],
+    "typeCount": 28,
+    "tablesCount": 1,
+    "memoriesCount": 1,
+    "globalsCount": 1,
+    "startFunction": null,
+    "namedFunctionCount": 131,
+    "callGraph": {
+      "importedFunctionCount": 122,
+      "definedFunctionCount": 394,
+      "codeBodyCount": 394,
+      "directImportCallCounts": {
+        "wbg.__wbindgen_object_drop_ref": 1092,
+        "wbg.__wbindgen_string_new": 314,
+        "wbg.__wbindgen_is_falsy": 32,
+        "wbg.__wbg_new_7dd9b384a913884d": 31,
+        "wbg.__wbindgen_number_new": 28,
+        "wbg.__wbg_new_3c32f9cd3d7f4595": 15,
+        "wbg.__wbg_testregexp_5e5e24c14542431c": 14,
+        "wbg.__wbindgen_cb_forget": 9,
+        "wbg.__wbindgen_is_undefined": 8,
+        "wbg.__wbindgen_object_clone_ref": 8,
+        "wbg.__wbg_functiontostring_a49d6e11424fca6f": 4,
+        "wbg.__wbg_execmethod_cf67844f081feac4": 3,
+        "wbg.__wbg_call_12b949cfc461d154": 2,
+        "wbg.__wbg_objectsome_7f42fa9fe4f455ba": 2,
+        "wbg.__wbg_accelerometerused_5ad897388b6b49ec": 1,
+        "wbg.__wbg_all_f7b6ae27de68967a": 1,
+        "wbg.__wbg_apply_5c2b47af834282d7": 1,
+        "wbg.__wbg_assign_d5e9bee34de00ffd": 1,
+        "wbg.__wbg_call_ce7cf17fc6380443": 1,
+        "wbg.__wbg_catch_cf98b11ab7c29a4e": 1,
+        "wbg.__wbg_debugtool_6f32d39e5cc537ac": 1,
+        "wbg.__wbg_detailchrome_af833e5cfeba0ffd": 1,
+        "wbg.__wbg_errorsgenerated_532990a2d4eb2ca2": 1,
+        "wbg.__wbg_execfunction0_aabb814815a591f3": 1,
+        "wbg.__wbg_execfunction1_a504dc48c82cd335": 1,
+        "wbg.__wbg_finally_fff9b79028420a96": 1,
+        "wbg.__wbg_forEach_bd7728906f61e603": 1,
+        "wbg.__wbg_get_b086a3091905ea8f": 1,
+        "wbg.__wbg_getfirstmatch_9679c7c35bbd6ccf": 1,
+        "wbg.__wbg_getOwnPropertyDescriptor_5c3d83450aca856a": 1,
+        "wbg.__wbg_getOwnPropertyNames_ea0935954373c185": 1,
+        "wbg.__wbg_getparser_31d8e9a24afafd4c": 1,
+        "wbg.__wbg_getPrototypeOf_d385a96fa0736141": 1,
+        "wbg.__wbg_global_cc239dc2303f417c": 1,
+        "wbg.__wbg_globalThis_22e06d4bea0084e3": 1,
+        "wbg.__wbg_has_f0897bce5f8ba669": 1,
+        "wbg.__wbg_indexOf_831c1502a5fb1e4e": 1,
+        "wbg.__wbg_instanceof_Object_d35fc70d59ddc182": 1,
+        "wbg.__wbg_join_b6efd1e111c0dd52": 1,
+        "wbg.__wbg_keys_538d9e4583d76ee6": 1,
+        "wbg.__wbg_new_d3eff62d5c013634": 1,
+        "wbg.__wbg_newnoargs_c4b2cbbd30e2d057": 1,
+        "wbg.__wbg_push_446cc0334a2426e8": 1,
+        "wbg.__wbg_resoverflow_3101caf8eda0c7cd": 1,
+        "wbg.__wbg_self_00b0599bca667294": 1,
+        "wbg.__wbg_set_8d5fd23e838df6b0": 1,
+        "wbg.__wbg_setcookie_b04b7af29c82f976": 1,
+        "wbg.__wbg_stringtonumber_95f60f6c5fcb82cc": 1,
+        "wbg.__wbg_then_b6fef331fde5cf0a": 1,
+        "wbg.__wbg_tpcanvas_427a143acee8f3fd": 1,
+        "wbg.__wbg_typeof_698627098f3290a4": 1,
+        "wbg.__wbg_values_2be7c9efef20b00f": 1,
+        "wbg.__wbg_window_aa795c5aad79b8ac": 1,
+        "wbg.__wbindgen_boolean_get": 1,
+        "wbg.__wbindgen_closure_wrapper460": 1,
+        "wbg.__wbindgen_closure_wrapper462": 1,
+        "wbg.__wbindgen_debug_string": 1,
+        "wbg.__wbindgen_is_function": 1,
+        "wbg.__wbindgen_is_null": 1,
+        "wbg.__wbindgen_is_string": 1,
+        "wbg.__wbindgen_number_get": 1,
+        "wbg.__wbindgen_string_get": 1,
+        "wbg.__wbindgen_throw": 1,
+        "wbg.__widl_f_append_child_Node": 1,
+        "wbg.__widl_f_avail_height_Screen": 1,
+        "wbg.__widl_f_avail_width_Screen": 1,
+        "wbg.__widl_f_body_Document": 1,
+        "wbg.__widl_f_client_height_Element": 1,
+        "wbg.__widl_f_client_width_Element": 1,
+        "wbg.__widl_f_color_depth_Screen": 1,
+        "wbg.__widl_f_content_window_HTMLIFrameElement": 1,
+        "wbg.__widl_f_create_element_Document": 1,
+        "wbg.__widl_f_create_event_Document": 1,
+        "wbg.__widl_f_device_pixel_ratio_Window": 1,
+        "wbg.__widl_f_document_element_Document": 1,
+        "wbg.__widl_f_document_Window": 1,
+        "wbg.__widl_f_enumerate_devices_MediaDevices": 1,
+        "wbg.__widl_f_get_context_HTMLCanvasElement": 1,
+        "wbg.__widl_f_get_element_by_id_Document": 1,
+        "wbg.__widl_f_get_extension_WebGLRenderingContext": 1,
+        "wbg.__widl_f_get_parameter_WebGLRenderingContext": 1,
+        "wbg.__widl_f_get_supported_extensions_WebGLRenderingContext": 1,
+        "wbg.__widl_f_has_attribute_Element": 1,
+        "wbg.__widl_f_height_Screen": 1,
+        "wbg.__widl_f_hostname_Location": 1,
+        "wbg.__widl_f_inner_height_Window": 1,
+        "wbg.__widl_f_inner_width_Window": 1,
+        "wbg.__widl_f_item_MimeTypeArray": 1,
+        "wbg.__widl_f_item_Plugin": 1,
+        "wbg.__widl_f_item_PluginArray": 1,
+        "wbg.__widl_f_length_MimeTypeArray": 1,
+        "wbg.__widl_f_length_Plugin": 1,
+        "wbg.__widl_f_length_PluginArray": 1,
+        "wbg.__widl_f_location_Window": 1,
+        "wbg.__widl_f_match_media_Window": 1,
+        "wbg.__widl_f_matches_MediaQueryList": 1,
+        "wbg.__widl_f_media_devices_Navigator": 1,
+        "wbg.__widl_f_mime_types_Navigator": 1,
+        "wbg.__widl_f_navigator_Window": 1,
+        "wbg.__widl_f_outer_height_Window": 1,
+        "wbg.__widl_f_outer_width_Window": 1,
+        "wbg.__widl_f_page_x_offset_Window": 1,
+        "wbg.__widl_f_page_y_offset_Window": 1,
+        "wbg.__widl_f_permissions_Navigator": 1,
+        "wbg.__widl_f_pixel_depth_Screen": 1,
+        "wbg.__widl_f_plugins_Navigator": 1,
+        "wbg.__widl_f_protocol_Location": 1,
+        "wbg.__widl_f_query_Permissions": 1,
+        "wbg.__widl_f_remove_child_Node": 1,
+        "wbg.__widl_f_screen_Window": 1,
+        "wbg.__widl_f_screen_x_Window": 1,
+        "wbg.__widl_f_set_attribute_Element": 1,
+        "wbg.__widl_f_set_srcdoc_HTMLIFrameElement": 1,
+        "wbg.__widl_f_set_value_HTMLInputElement": 1,
+        "wbg.__widl_f_user_agent_Navigator": 1,
+        "wbg.__widl_f_value_HTMLInputElement": 1,
+        "wbg.__widl_f_width_Screen": 1,
+        "wbg.__widl_instanceof_HTMLCanvasElement": 1,
+        "wbg.__widl_instanceof_HTMLIFrameElement": 1,
+        "wbg.__widl_instanceof_HTMLInputElement": 1,
+        "wbg.__widl_instanceof_WebGLRenderingContext": 1,
+        "wbg.__widl_instanceof_Window": 1
+      },
+      "directInternalCallCountsTop": {
+        "func#332": 127,
+        "func#279": 121,
+        "func#334": 99,
+        "func#258": 97,
+        "func#265": 54,
+        "func#453": 47,
+        "func#478": 45,
+        "func#426": 44,
+        "func#195": 34,
+        "func#462": 33,
+        "func#305": 31,
+        "func#266": 30,
+        "func#350": 25,
+        "func#348": 24,
+        "func#469": 22,
+        "func#144": 20,
+        "func#280": 20,
+        "func#302": 20,
+        "func#498": 20,
+        "func#345": 19,
+        "func#349": 17,
+        "func#196": 15,
+        "func#203": 15,
+        "func#470": 14,
+        "func#497": 13,
+        "func#158": 12,
+        "func#168": 12,
+        "func#267": 12,
+        "func#379": 12,
+        "func#370": 11,
+        "func#377": 11,
+        "func#363": 10,
+        "func#286": 9,
+        "func#327": 9,
+        "func#457": 9,
+        "func#458": 9,
+        "func#159": 8,
+        "func#190": 8,
+        "func#288": 8,
+        "func#490": 8,
+        "func#501": 8,
+        "func#271": 7,
+        "func#485": 7,
+        "func#192": 6,
+        "func#261": 6,
+        "func#281": 6,
+        "func#287": 6,
+        "func#378": 6,
+        "func#460": 6,
+        "func#156": 5,
+        "func#174": 5,
+        "func#175": 5,
+        "func#193": 5,
+        "func#240": 5,
+        "func#482": 5,
+        "func#123": 4,
+        "func#148": 4,
+        "func#154": 4,
+        "func#171": 4,
+        "func#197": 4,
+        "func#202": 4,
+        "func#259": 4,
+        "func#262": 4,
+        "func#329": 4,
+        "func#374": 4,
+        "func#476": 4,
+        "func#477": 4,
+        "func#500": 4,
+        "func#503": 4,
+        "func#169": 3,
+        "func#204": 3,
+        "func#205": 3,
+        "func#241": 3,
+        "func#264": 3,
+        "func#289": 3,
+        "func#291": 3,
+        "func#325": 3,
+        "func#375": 3,
+        "func#424": 3,
+        "func#442": 3
+      },
+      "importantImportCallers": {
+        "__wbg_resoverflow_3101caf8eda0c7cd": {
+          "importFunctionIndex": 0,
+          "importName": "wbg.__wbg_resoverflow_3101caf8eda0c7cd",
+          "category": "active_probe",
+          "directCallCount": 1,
+          "directCallerCount": 1,
+          "callers": [
+            {
+              "functionIndex": 466,
+              "functionName": "func#466",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 0
+            }
+          ]
+        },
+        "__wbg_accelerometerused_5ad897388b6b49ec": {
+          "importFunctionIndex": 1,
+          "importName": "wbg.__wbg_accelerometerused_5ad897388b6b49ec",
+          "category": "active_probe",
+          "directCallCount": 1,
+          "directCallerCount": 1,
+          "callers": [
+            {
+              "functionIndex": 463,
+              "functionName": "func#463",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 0
+            }
+          ]
+        },
+        "__wbg_functiontostring_a49d6e11424fca6f": {
+          "importFunctionIndex": 10,
+          "importName": "wbg.__wbg_functiontostring_a49d6e11424fca6f",
+          "category": "other",
+          "directCallCount": 4,
+          "directCallerCount": 3,
+          "callers": [
+            {
+              "functionIndex": 136,
+              "functionName": "func#136",
+              "directCallCount": 2,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            },
+            {
+              "functionIndex": 186,
+              "functionName": "func#186",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            },
+            {
+              "functionIndex": 210,
+              "functionName": "func#210",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            }
+          ]
+        },
+        "__wbg_tpcanvas_427a143acee8f3fd": {
+          "importFunctionIndex": 17,
+          "importName": "wbg.__wbg_tpcanvas_427a143acee8f3fd",
+          "category": "active_probe",
+          "directCallCount": 1,
+          "directCallerCount": 1,
+          "callers": [
+            {
+              "functionIndex": 371,
+              "functionName": "func#371",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            }
+          ]
+        },
+        "__wbg_testregexp_5e5e24c14542431c": {
+          "importFunctionIndex": 19,
+          "importName": "wbg.__wbg_testregexp_5e5e24c14542431c",
+          "category": "ua_parser_or_regex",
+          "directCallCount": 14,
+          "directCallerCount": 10,
+          "callers": [
+            {
+              "functionIndex": 167,
+              "functionName": "func#167",
+              "directCallCount": 3,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            },
+            {
+              "functionIndex": 140,
+              "functionName": "func#140",
+              "directCallCount": 2,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            },
+            {
+              "functionIndex": 191,
+              "functionName": "func#191",
+              "directCallCount": 2,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            },
+            {
+              "functionIndex": 145,
+              "functionName": "func#145",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            },
+            {
+              "functionIndex": 166,
+              "functionName": "func#166",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            },
+            {
+              "functionIndex": 176,
+              "functionName": "func#176",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            },
+            {
+              "functionIndex": 178,
+              "functionName": "func#178",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            },
+            {
+              "functionIndex": 181,
+              "functionName": "func#181",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            },
+            {
+              "functionIndex": 198,
+              "functionName": "func#198",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            },
+            {
+              "functionIndex": 199,
+              "functionName": "func#199",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            }
+          ]
+        },
+        "__wbg_stringtonumber_95f60f6c5fcb82cc": {
+          "importFunctionIndex": 21,
+          "importName": "wbg.__wbg_stringtonumber_95f60f6c5fcb82cc",
+          "category": "ua_parser_or_regex",
+          "directCallCount": 1,
+          "directCallerCount": 1,
+          "callers": [
+            {
+              "functionIndex": 166,
+              "functionName": "func#166",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            }
+          ]
+        },
+        "__wbg_getparser_31d8e9a24afafd4c": {
+          "importFunctionIndex": 22,
+          "importName": "wbg.__wbg_getparser_31d8e9a24afafd4c",
+          "category": "ua_parser_or_regex",
+          "directCallCount": 1,
+          "directCallerCount": 1,
+          "callers": [
+            {
+              "functionIndex": 128,
+              "functionName": "func#128",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            }
+          ]
+        },
+        "__wbg_getfirstmatch_9679c7c35bbd6ccf": {
+          "importFunctionIndex": 23,
+          "importName": "wbg.__wbg_getfirstmatch_9679c7c35bbd6ccf",
+          "category": "ua_parser_or_regex",
+          "directCallCount": 1,
+          "directCallerCount": 1,
+          "callers": [
+            {
+              "functionIndex": 128,
+              "functionName": "func#128",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            }
+          ]
+        },
+        "__wbg_setcookie_b04b7af29c82f976": {
+          "importFunctionIndex": 24,
+          "importName": "wbg.__wbg_setcookie_b04b7af29c82f976",
+          "category": "cookie_sink",
+          "directCallCount": 1,
+          "directCallerCount": 1,
+          "callers": [
+            {
+              "functionIndex": 128,
+              "functionName": "func#128",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 1
+            }
+          ]
+        },
+        "__widl_f_protocol_Location": {
+          "importFunctionIndex": 43,
+          "importName": "wbg.__widl_f_protocol_Location",
+          "category": "webidl_env_read",
+          "directCallCount": 1,
+          "directCallerCount": 1,
+          "callers": [
+            {
+              "functionIndex": 237,
+              "functionName": "func#237",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 2
+            }
+          ]
+        },
+        "__widl_f_hostname_Location": {
+          "importFunctionIndex": 44,
+          "importName": "wbg.__widl_f_hostname_Location",
+          "category": "webidl_env_read",
+          "directCallCount": 1,
+          "directCallerCount": 1,
+          "callers": [
+            {
+              "functionIndex": 238,
+              "functionName": "func#238",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 2
+            }
+          ]
+        },
+        "__widl_f_enumerate_devices_MediaDevices": {
+          "importFunctionIndex": 45,
+          "importName": "wbg.__widl_f_enumerate_devices_MediaDevices",
+          "category": "webidl_env_read",
+          "directCallCount": 1,
+          "directCallerCount": 1,
+          "callers": [
+            {
+              "functionIndex": 292,
+              "functionName": "func#292",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 2
+            }
+          ]
+        },
+        "__widl_f_user_agent_Navigator": {
+          "importFunctionIndex": 53,
+          "importName": "wbg.__widl_f_user_agent_Navigator",
+          "category": "webidl_env_read",
+          "directCallCount": 1,
+          "directCallerCount": 1,
+          "callers": [
+            {
+              "functionIndex": 239,
+              "functionName": "func#239",
+              "directCallCount": 1,
+              "reachedFromExports": [
+                "main",
+                "__wbindgen_start"
+              ],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 4
+            }
+          ]
+        },
+        "__widl_f_query_Permissions": {
+          "importFunctionIndex": 56,
+          "importName": "wbg.__widl_f_query_Permissions",
+          "category": "webidl_env_read",
+          "directCallCount": 1,
+          "directCallerCount": 1,
+          "callers": [
+            {
+              "functionIndex": 285,
+              "functionName": "func#285",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 2
+            }
+          ]
+        },
+        "__wbindgen_number_get": {
+          "importFunctionIndex": 114,
+          "importName": "wbg.__wbindgen_number_get",
+          "category": "wasm_bindgen_runtime",
+          "directCallCount": 1,
+          "directCallerCount": 1,
+          "callers": [
+            {
+              "functionIndex": 349,
+              "functionName": "func#349",
+              "directCallCount": 1,
+              "reachedFromExports": [],
+              "reachedFromStart": false,
+              "reverseReachableDefinedFunctionCount": 18
+            }
+          ]
+        }
+      },
+      "indirectCallSitesTop": [
+        {
+          "functionIndex": 159,
+          "functionName": "func#159",
+          "indirectCallCount": 8,
+          "indirectCalls": [
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 158,
+          "functionName": "func#158",
+          "indirectCallCount": 7,
+          "indirectCalls": [
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 193,
+          "functionName": "func#193",
+          "indirectCallCount": 7,
+          "indirectCalls": [
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 153,
+          "functionName": "func#153",
+          "indirectCallCount": 5,
+          "indirectCalls": [
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 169,
+          "functionName": "func#169",
+          "indirectCallCount": 5,
+          "indirectCalls": [
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 179,
+          "functionName": "func#179",
+          "indirectCallCount": 4,
+          "indirectCalls": [
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 164,
+          "functionName": "func#164",
+          "indirectCallCount": 3,
+          "indirectCalls": [
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 137,
+          "functionName": "func#137",
+          "indirectCallCount": 2,
+          "indirectCalls": [
+            {
+              "typeIndex": 0,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 0,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 171,
+          "functionName": "func#171",
+          "indirectCallCount": 2,
+          "indirectCalls": [
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 233,
+          "functionName": "func#233",
+          "indirectCallCount": 2,
+          "indirectCalls": [
+            {
+              "typeIndex": 0,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 0,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": [
+            "main",
+            "__wbindgen_start"
+          ]
+        },
+        {
+          "functionIndex": 261,
+          "functionName": "func#261",
+          "indirectCallCount": 2,
+          "indirectCalls": [
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 329,
+          "functionName": "func#329",
+          "indirectCallCount": 2,
+          "indirectCalls": [
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            },
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 203,
+          "functionName": "func#203",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 1,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 250,
+          "functionName": "func#250",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 8,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 300,
+          "functionName": "func#300",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 7,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": [
+            "main",
+            "__wbindgen_start"
+          ]
+        },
+        {
+          "functionIndex": 333,
+          "functionName": "func#333",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 7,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 351,
+          "functionName": "func#351",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 7,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": [
+            "main",
+            "__wbindgen_start"
+          ]
+        },
+        {
+          "functionIndex": 378,
+          "functionName": "func#378",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 394,
+          "functionName": "func#394",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 4,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 425,
+          "functionName": "func#425",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 11,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 430,
+          "functionName": "func#430",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 10,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 431,
+          "functionName": "wasm_bindgen__convert__closures__invoke3_mut__ha9556e0b44fc67a4",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 6,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": [
+            "wasm_bindgen__convert__closures__invoke3_mut__ha9556e0b44fc67a4"
+          ]
+        },
+        {
+          "functionIndex": 432,
+          "functionName": "func#432",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 19,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 433,
+          "functionName": "func#433",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 20,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 438,
+          "functionName": "wasm_bindgen__convert__closures__invoke2_mut__h77bb85b34aab6ced",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 5,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": [
+            "wasm_bindgen__convert__closures__invoke2_mut__h77bb85b34aab6ced"
+          ]
+        },
+        {
+          "functionIndex": 439,
+          "functionName": "func#439",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 0,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 440,
+          "functionName": "_dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h93011b86c70ce711",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 0,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": [
+            "_dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h93011b86c70ce711"
+          ]
+        },
+        {
+          "functionIndex": 441,
+          "functionName": "func#441",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 444,
+          "functionName": "func#444",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 4,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 445,
+          "functionName": "_dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h5c9b8cfcb2588a53",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 4,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": [
+            "_dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h5c9b8cfcb2588a53"
+          ]
+        },
+        {
+          "functionIndex": 454,
+          "functionName": "func#454",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 3,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 465,
+          "functionName": "func#465",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 2,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": []
+        },
+        {
+          "functionIndex": 498,
+          "functionName": "func#498",
+          "indirectCallCount": 1,
+          "indirectCalls": [
+            {
+              "typeIndex": 0,
+              "tableIndex": 0
+            }
+          ],
+          "reachedFromExports": [
+            "main",
+            "__wbindgen_start"
+          ]
+        }
+      ],
+      "exportedReachability": {
+        "main": {
+          "functionIndex": 510,
+          "functionName": "main",
+          "reachableDefinedFunctionCount": 73,
+          "reachableImportCallCounts": {
+            "wbg.__wbindgen_object_drop_ref": 167,
+            "wbg.__wbindgen_string_new": 65,
+            "wbg.__wbg_new_7dd9b384a913884d": 2,
+            "wbg.__wbg_get_b086a3091905ea8f": 1,
+            "wbg.__wbg_instanceof_Object_d35fc70d59ddc182": 1,
+            "wbg.__wbg_new_d3eff62d5c013634": 1,
+            "wbg.__wbg_set_8d5fd23e838df6b0": 1,
+            "wbg.__wbg_then_b6fef331fde5cf0a": 1,
+            "wbg.__wbindgen_cb_forget": 1,
+            "wbg.__wbindgen_closure_wrapper460": 1,
+            "wbg.__wbindgen_is_falsy": 1,
+            "wbg.__wbindgen_object_clone_ref": 1,
+            "wbg.__widl_f_append_child_Node": 1,
+            "wbg.__widl_f_body_Document": 1,
+            "wbg.__widl_f_create_element_Document": 1,
+            "wbg.__widl_f_document_Window": 1,
+            "wbg.__widl_f_get_element_by_id_Document": 1,
+            "wbg.__widl_f_navigator_Window": 1,
+            "wbg.__widl_f_remove_child_Node": 1,
+            "wbg.__widl_f_set_attribute_Element": 1,
+            "wbg.__widl_f_set_value_HTMLInputElement": 1,
+            "wbg.__widl_f_user_agent_Navigator": 1,
+            "wbg.__widl_f_value_HTMLInputElement": 1,
+            "wbg.__widl_instanceof_HTMLInputElement": 1,
+            "wbg.__widl_instanceof_Window": 1
+          }
+        },
+        "__wbindgen_malloc": {
+          "functionIndex": 352,
+          "functionName": "__wbindgen_malloc",
+          "reachableDefinedFunctionCount": 6,
+          "reachableImportCallCounts": {}
+        },
+        "__wbindgen_realloc": {
+          "functionIndex": 427,
+          "functionName": "__wbindgen_realloc",
+          "reachableDefinedFunctionCount": 10,
+          "reachableImportCallCounts": {}
+        },
+        "_dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h93011b86c70ce711": {
+          "functionIndex": 440,
+          "functionName": "_dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h93011b86c70ce711",
+          "reachableDefinedFunctionCount": 2,
+          "reachableImportCallCounts": {
+            "wbg.__wbindgen_throw": 1
+          }
+        },
+        "_dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h5c9b8cfcb2588a53": {
+          "functionIndex": 445,
+          "functionName": "_dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h5c9b8cfcb2588a53",
+          "reachableDefinedFunctionCount": 2,
+          "reachableImportCallCounts": {
+            "wbg.__wbindgen_throw": 1
+          }
+        },
+        "__wbindgen_free": {
+          "functionIndex": 461,
+          "functionName": "__wbindgen_free",
+          "reachableDefinedFunctionCount": 3,
+          "reachableImportCallCounts": {}
+        },
+        "__wbindgen_exn_store": {
+          "functionIndex": 471,
+          "functionName": "__wbindgen_exn_store",
+          "reachableDefinedFunctionCount": 1,
+          "reachableImportCallCounts": {}
+        },
+        "wasm_bindgen__convert__closures__invoke3_mut__ha9556e0b44fc67a4": {
+          "functionIndex": 431,
+          "functionName": "wasm_bindgen__convert__closures__invoke3_mut__ha9556e0b44fc67a4",
+          "reachableDefinedFunctionCount": 2,
+          "reachableImportCallCounts": {
+            "wbg.__wbindgen_throw": 1
+          }
+        },
+        "wasm_bindgen__convert__closures__invoke2_mut__h77bb85b34aab6ced": {
+          "functionIndex": 438,
+          "functionName": "wasm_bindgen__convert__closures__invoke2_mut__h77bb85b34aab6ced",
+          "reachableDefinedFunctionCount": 2,
+          "reachableImportCallCounts": {
+            "wbg.__wbindgen_throw": 1
+          }
+        },
+        "__wbindgen_start": {
+          "functionIndex": 510,
+          "functionName": "main",
+          "reachableDefinedFunctionCount": 73,
+          "reachableImportCallCounts": {
+            "wbg.__wbindgen_object_drop_ref": 167,
+            "wbg.__wbindgen_string_new": 65,
+            "wbg.__wbg_new_7dd9b384a913884d": 2,
+            "wbg.__wbg_get_b086a3091905ea8f": 1,
+            "wbg.__wbg_instanceof_Object_d35fc70d59ddc182": 1,
+            "wbg.__wbg_new_d3eff62d5c013634": 1,
+            "wbg.__wbg_set_8d5fd23e838df6b0": 1,
+            "wbg.__wbg_then_b6fef331fde5cf0a": 1,
+            "wbg.__wbindgen_cb_forget": 1,
+            "wbg.__wbindgen_closure_wrapper460": 1,
+            "wbg.__wbindgen_is_falsy": 1,
+            "wbg.__wbindgen_object_clone_ref": 1,
+            "wbg.__widl_f_append_child_Node": 1,
+            "wbg.__widl_f_body_Document": 1,
+            "wbg.__widl_f_create_element_Document": 1,
+            "wbg.__widl_f_document_Window": 1,
+            "wbg.__widl_f_get_element_by_id_Document": 1,
+            "wbg.__widl_f_navigator_Window": 1,
+            "wbg.__widl_f_remove_child_Node": 1,
+            "wbg.__widl_f_set_attribute_Element": 1,
+            "wbg.__widl_f_set_value_HTMLInputElement": 1,
+            "wbg.__widl_f_user_agent_Navigator": 1,
+            "wbg.__widl_f_value_HTMLInputElement": 1,
+            "wbg.__widl_instanceof_HTMLInputElement": 1,
+            "wbg.__widl_instanceof_Window": 1
+          }
+        }
+      },
+      "startReachability": null,
+      "parseErrors": [],
+      "parseErrorCount": 0,
+      "indirectCallCount": 70,
+      "refFuncCount": 0
+    }
+  },
+  "wrapper": {
+    "hasWasmBindgenHeap": true,
+    "hasSetCookieImport": true,
+    "hasDefaultLoader": true,
+    "hasMainExportWrapper": true
+  },
+  "staticStrings": {
+    "uniqueCount": 430,
+    "interesting": [
+      "__wbg_tpcanvas_427a143acee8f3fd",
+      "wbg __wbg_setcookie_b04b7af29c82f976",
+      "wbg#__widl_instanceof_HTMLCanvasElement",
+      "wbg&__widl_f_get_context_HTMLCanvasElement",
+      "wbg'__widl_f_enumerate_devices_MediaDevices",
+      "__widl_f_permissions_Navigator",
+      "__widl_f_mime_types_Navigator",
+      "__widl_f_plugins_Navigator",
+      "wbg __widl_f_media_devices_Navigator",
+      "__widl_f_user_agent_Navigator",
+      "__widl_f_query_Permissions",
+      "__widl_f_avail_width_Screen",
+      "__widl_f_avail_height_Screen",
+      "__widl_f_width_Screen",
+      "__widl_f_height_Screen",
+      "__widl_f_color_depth_Screen",
+      "__widl_f_pixel_depth_Screen",
+      "wbg'__widl_instanceof_WebGLRenderingContext",
+      "wbg,__widl_f_get_extension_WebGLRenderingContext",
+      "wbg,__widl_f_get_parameter_WebGLRenderingContext",
+      "wbg7__widl_f_get_supported_extensions_WebGLRenderingContext",
+      "__widl_f_navigator_Window",
+      "__widl_f_screen_Window",
+      "__widl_f_screen_x_Window",
+      "|_dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h93011b86c70ce711",
+      "z_dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__h5c9b8cfcb2588a53",
+      "?wasm_bindgen__convert__closures__invoke3_mut__ha9556e0b44fc67a4",
+      "?wasm_bindgen__convert__closures__invoke2_mut__h77bb85b34aab6ced",
+      "webdriver",
+      "346bddd3pravocaptcha_wasmdiv",
+      "\\..*\\..*$pluginsisHTTPSmimeTypesuserAgentplatformlanguagesscreentouchScreenvideoCardmultimediaDevicesproductSubnavigatorPrototypeetslscreenDescphantomJSnightmareJSseleniumwebDriverwebDriverValueerrorsGeneratedresOverflowaccelerometerUsedscreenMediaQueryhasChromedetailChromepermissionsiframeChromedebugToolbatterydeviceMemorytpCanvassequentumaudioCodecsvideoCodecs",
+      "wInnerHeightwOuterHeightwOuterWidthwInnerWidthwScreenXwPageXOffsetwPageYOffsetcWidthcHeightsWidthsHeightsAvailWidthsAvailHeightsColorDepthsPixelDepthwDevicePixelRatiomaxTouchPointsTouchEventontouchstart",
+      "canvaswebgl",
+      "experimental-webgl",
+      "WEBGL_debug_renderer_info",
+      "UNMASKED_VENDOR_WEBGL",
+      "UNMASKED_RENDERER_WEBGL",
+      "mediaDevices",
+      "evalwidtherror__nightmarecallPhantom_phantomphantom",
+      "_Selenium_IDE_RecordercallSelenium_selenium__webdriver_script_fn__driver_evaluate__webdriver_evaluate__selenium_evaluate__fxdriver_evaluate__driver_unwrapped__webdriver_unwrapped__selenium_unwrapped__fxdriver_unwrapped__webdriver_script_funcdriver(min-width: px)",
+      "iframewasm blank page",
+      "PHANTOM_UAPHANTOM_PROPERTIESPHANTOM_ETSLPHANTOM_LANGUAGEPHANTOM_WEBSOCKETPHANTOM_OVERFLOWPHANTOM_WINDOW_HEIGHTHEADCHR_UAWEBDRIVERHEADCHR_CHROME_OBJHEADCHR_PERMISSIONSHEADCHR_IFRAMESELENIUM_DRIVERCHR_BATTERYSEQUENTUMbrowserdevicemajor",
+      "PhantomJS",
+      "onwasm",
+      "wasm=; max-age=; domain=; path=/; samesite=none; secure",
+      "NavigatorNodeWindow",
+      "wasm-bindgen"
+    ]
+  },
+  "trace": null,
+  "traceComparison": null
+}

@@ -1,5 +1,59 @@
 # kad.arbitr.ru WASM cookie 逆向记录
 
+## 2026-06-17 当前验证更新
+
+- 代理：使用本地 `http://127.0.0.1:7890` 作为当前可用出口。
+- 线上资源变化：`fp.js/fp_bg.wasm` 未变化，`wasm.js/wasm_bg.wasm` 已换版；旧资源文件大小相同但 SHA256 不同，会稳定生成旧 `wasm` 并导致业务回放 451。
+- 已同步当前通过版资源到 `source/wasm.js` 与 `source/wasm_bg.wasm`。
+- 当前 `wasm.js` SHA256：`629506b643500d4650b9795ff4e8f0c71cd53d78c55c119e26a5abe68bbe514f`。
+- 当前 `wasm_bg.wasm` SHA256：`bb0c1d4f8f88ef177cf5c66a6d974a9609a45503d60eb94d4d4264a12998f660`。
+- 默认本地 helper 已验证：
+
+```text
+node targets\ru_sf_wasm\scripts\generate_cookies.js --pretty
+```
+
+当前输出：
+
+- `pr_fp=e94c74962721a68ab05418066e68bf1fa90892f13c2cbc628cd0ef31825c045c`
+- `wasm=87a83619b03327ab104ef4007068a59d`
+
+验收结果：
+
+- Chrome/CDP 真实页面链路经 `7890` 生成 `pr_fp/wasm` 后，请求案件卡片返回 `HTTP 200 + case_card_html`。
+- 本地 Node helper 使用当前 `source/` 默认资源生成上述 Cookie 后，经 `7890` 协议回放案件卡片返回 `HTTP 200`，HTML 命中 `b-case-header` 与 `js-case-header-case_num`。
+- 当前证据文件：
+  - `samples/browser_generated_cookies_current_7890.json`
+  - `samples/node_current_pair_7890_card_response.html`
+  - `samples/node_current_pair_7890_card.headers.txt`
+  - `samples/wasm_generation_summary_current_7890.json`
+  - `samples/stale_wasm_http_7890_451_response.html`、`samples/stale_wasm_socks5h_7890_451_response.html`（旧资源生成旧 `wasm` 的失败对照）
+- 本次逆向沉淀案例：`cases/wasm/wasm-bindgen-pr-fp-wasm-cookie-gate.md`。
+
+## 2026-06-18 output 脚本收束
+
+- `output/kad_request.py`：当前主交付脚本。默认使用 `http://127.0.0.1:7890`，调用 `scripts/generate_cookies.js` 生成 `pr_fp/wasm`，然后可选请求详情页验证；不再包含无头浏览器兜底、验证码流程和 DDoS-Guard mark 实验代码。
+- `output/test01.py`：轻量 smoke test，同样只走 Node.js helper + 协议回放。
+- `output/headless_browser_cookies.py`：单独的无头 Chrome/CDP 方案，只作为 browser-auto 兜底或真值对照使用，不被主脚本自动调用。
+
+推荐主流程：
+
+```text
+python targets\ru_sf_wasm\output\kad_request.py
+```
+
+只生成 Cookie 不请求详情页：
+
+```text
+python targets\ru_sf_wasm\output\kad_request.py --skip-card
+```
+
+单独验证无头浏览器方案：
+
+```text
+python targets\ru_sf_wasm\output\headless_browser_cookies.py
+```
+
 ## 项目用途判断
 
 当前 `reverse-lab` 是一个 Web/JS 协议恢复工作区，主要用于把浏览器里的动态验证、签名、WASM、cookie、请求封装等链路还原成可在浏览器外运行的脚本。项目约定把每个目标放在 `targets/<source-name>/`，原始素材进 `source/`，探针和复现脚本进 `scripts/`，请求样本进 `samples/`，最终可运行程序进 `output/`。

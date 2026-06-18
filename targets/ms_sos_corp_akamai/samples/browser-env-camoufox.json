@@ -1,0 +1,34 @@
+{
+  "captured_at": "2026-06-17T16:00:00Z",
+  "browser_family": "Camoufox Firefox/Gecko baseline",
+  "navigator": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:135.0) Gecko/20100101 Firefox/135.0",
+    "platform": "Win32",
+    "language": "en-US",
+    "languages": ["en-US", "en"],
+    "webdriver": false,
+    "hardwareConcurrency": 12,
+    "maxTouchPoints": 2
+  },
+  "screen": {
+    "width": 5120,
+    "height": 1440,
+    "availWidth": 5120,
+    "availHeight": 1392,
+    "colorDepth": 24,
+    "devicePixelRatio": 1
+  },
+  "timing": {
+    "timezone": "Asia/Shanghai",
+    "timezoneOffset": -480
+  },
+  "cookie_names_observed": [
+    "MSOS_Corp_SessionId",
+    "TS01f5c3b0",
+    "bm_ss",
+    "bm_s",
+    "bm_so",
+    "bm_lso"
+  ],
+  "state_file_with_cookie_values": "samples/browser-state-camoufox.json"
+}

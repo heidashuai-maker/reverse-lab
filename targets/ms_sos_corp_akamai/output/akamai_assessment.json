@@ -1,0 +1,64 @@
+{
+  "site_type": "US state corporation registry search",
+  "country_name": "United States",
+  "country_code": "US",
+  "analysis_confidence": "high",
+  "need_overseas_proxy": false,
+  "need_login_for_search": false,
+  "need_login_for_detail": false,
+  "has_search": true,
+  "has_list": true,
+  "has_detail": true,
+  "detail_carrier_type": "html",
+  "download_required": false,
+  "render_mode": "mixed",
+  "collection_mode": "search API returns rows, detail XHR returns HTML modal",
+  "recommended_spider_mode": "automation_skeleton",
+  "full_collection_strategy": "Seed by business name / business id search API only after an Akamai-aware access plan is defined. Plain curl replay is currently blocked.",
+  "detail_strategy": "The business detail is loaded by ViewXSLTFileByName.aspx with providerName=MSBSD_CorporationBusinessDetails and FilingId from the search result row.",
+  "pdf_strategy": "",
+  "login_strategy": "No login observed for the tested search and detail sample.",
+  "automation_needed": true,
+  "anti_bot_risk": "high",
+  "anti_bot_vendor": ["Akamai"],
+  "anti_bot_evidence": [
+    "Search document and detail XHR responses include Akamai-GRN.",
+    "Search document and detail XHR responses include Server-Timing ak_p.",
+    "Search document and detail XHR responses include x-akamai-transformed pmb=mRUM.",
+    "Browser receives bm_ss, bm_s and bm_so cookies and sensor POST refreshes bm_s.",
+    "Same-origin randomized sensor script /ywwgo-/.../P3tQ is loaded and later POSTed.",
+    "Detail response body includes inline BOOMR.plugins.AK variables such as ak.v, ak.cp, ak.ai, ak.rid and ak.gh.",
+    "Plain curl, even with exported browser cookies, receives 403 Access Denied referencing errors.edgesuite.net."
+  ],
+  "task_seed_dimension": "business name or business id",
+  "seed_examples": [
+    {
+      "business_name": "WAL-MART ASSOCIATES, INC.",
+      "business_id": "636136",
+      "filing_id": "31734e49-817e-4e9f-9ea0-4ec10aa212a9"
+    }
+  ],
+  "priority_validation_targets": [
+    "Validate whether a browser automation skeleton can sustain repeated searches without Akamai escalation.",
+    "If a pure protocol spider is required, investigate the Akamai sensor/cookie/TLS fingerprint chain separately.",
+    "Capture multiple detail samples to verify whether providerName and FilingId are sufficient business parameters after the Akamai gate is satisfied."
+  ],
+  "blocking_risk": "Plain HTTP replay is blocked at the Akamai edge. Cookie reuse alone did not reproduce the browser detail request.",
+  "first_validation_action": "Use Camoufox to run several repeated BusinessNameSearch and detail clicks, then compare failures against plain protocol replay.",
+  "evidence_summary": [
+    "Camoufox detail XHR status 200 with Akamai-GRN and x-akamai-transformed.",
+    "Anonymous curl status 403 with errors.edgesuite.net for search and detail endpoints.",
+    "BusinessSearchScriptV2.js maps search result FilingId to detail XHR."
+  ],
+  "blocking_evidence": [
+    "samples/http_probe_search_get.headers.txt",
+    "source/search_page_anonymous_get.html",
+    "samples/http_probe_detail_browser_cookie.headers.txt",
+    "source/detail_636136_browser_cookie.html"
+  ],
+  "api_evidence": [
+    "POST /corp/Services/MS/CorpServices.asmx/BusinessNameSearch",
+    "GET /corp/portal/c/page/corpbusinessidsearch/ViewXSLTFileByName.aspx?providerName=MSBSD_CorporationBusinessDetails&FilingId=<FilingId>"
+  ],
+  "pdf_evidence": []
+}

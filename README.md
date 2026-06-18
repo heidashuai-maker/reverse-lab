@@ -8,6 +8,7 @@ Web/JS 逆向专题工作台，用于管理项目级 skills、目标站点材料
 - 项目规则：`AGENTS.md`
 - Skill 源库：`skills-library/`
 - 默认激活层：`.codex/skills/`、`.agents/skills/`
+- 案例经验库：`cases/README.md`
 
 不要新增 `CLAUDE.md` 或 `.claude/skills` 维护链路。
 
@@ -27,14 +28,16 @@ tmp/                  外部参考项目和一次性实验材料
 ```
 
 `tmp/` 不视为正式沉淀，skill 不应直接依赖其中的文件。
+`cases/` 只保存脱敏后的可复用经验；目标原始材料、抓包、Cookie、WASM、JS 和输出程序仍然放在 `targets/<site>/`。
 
 ## Skill 使用原则
 
 1. 先看 `SKILL_ROUTER.md` 判定任务类型。
-2. 默认只启用核心通用 skill。
-3. WAF、captcha、adapters 等窄场景 skill 按需启用。
-4. 目标材料不写入 skill 目录。
-5. 修改 skill 后同步 active 副本并跑审计。
+2. 再查 `cases/README.md`，看是否已有同类已验证案例可复用。
+3. 默认只启用核心通用 skill。
+4. WAF、captcha、adapters 等窄场景 skill 按需启用。
+5. 目标材料不写入 skill 目录。
+6. 修改 skill 后同步 active 副本并跑审计。
 
 默认核心 skill：
 
@@ -109,6 +112,12 @@ powershell -ExecutionPolicy Bypass -File .\tools\disable-skill.ps1 -Name jd-h5st
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\tools\audit-skills.ps1
+```
+
+审计 case：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\audit-cases.ps1
 ```
 
 创建 target：
